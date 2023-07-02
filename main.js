@@ -9,3 +9,7 @@ const GAME_BOARD = (function() {
         gameBoard
     };
 })();
+
+const createPlayer = (name) => {
+    return { name }
+}
