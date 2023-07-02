@@ -44,6 +44,7 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
     return { array, set, print, clear };
 })();
 
-const createPlayer = (name) => {
-    return { name }
+
+const createPlayer = (name, id, wins) => {
+    return { name, id, wins }
 }
