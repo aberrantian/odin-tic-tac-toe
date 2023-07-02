@@ -1,8 +1,9 @@
 const GAME_BOARD = (function() {
-    let gameBoard = [
-        [undefined, undefined, undefined],
-        [undefined, undefined, undefined],
-        [undefined, undefined, undefined]
+    let array = [
+    //    0    1    2
+        [' ', ' ', ' '], // 0
+        [' ', ' ', ' '], // 1
+        [' ', ' ', ' ']  // 2
     ]
 
     return {
