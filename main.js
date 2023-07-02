@@ -1,1 +1,11 @@
-console.log('hello world');
+const GAME_BOARD = (function() {
+    let gameBoard = [
+        [undefined, undefined, undefined],
+        [undefined, undefined, undefined],
+        [undefined, undefined, undefined]
+    ]
+
+    return {
+        gameBoard
+    };
+})();
