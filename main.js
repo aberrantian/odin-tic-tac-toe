@@ -46,5 +46,14 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
 
 
 const createPlayer = (name, id, wins) => {
-    return { name, id, wins }
+    function winsAdd() {
+        wins++;
+    }
+
+    function winsClear() {
+        wins = 0;
+    }
+
+    return { name, id, wins, winsAdd, winsClear };
+}
 }
