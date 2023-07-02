@@ -6,9 +6,18 @@ const GAME_BOARD = (function() {
         [' ', ' ', ' ']  // 2
     ]
 
-    return {
-        gameBoard
-    };
+    function set(x, y, playerID) {
+        xIsInRange = x >= 0 && x <= 2;
+        yIsInRange = y >= 0 && y <= 2;
+
+        if (xIsInRange && yIsInRange) {
+            console.log('X and Y are in range');
+        } else {
+            console.warn(`X and Y are not in range:\nX: ${x}\tY: ${y}`);
+        }
+    }
+
+    return { array, set };
 })();
 
 const createPlayer = (name) => {
