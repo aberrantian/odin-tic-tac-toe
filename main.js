@@ -56,4 +56,17 @@ const createPlayer = (name, id, wins) => {
 
     return { name, id, wins, winsAdd, winsClear };
 }
-}
+
+const player = (() => {
+    const one = createPlayer('One', 'X', 0);
+    const two = createPlayer('Two', 'O', 0);
+    let turn = one;
+    function switchTurns() {
+        player.turn == one ? player.turn = player.two : player.turn = player.one
+    }
+
+    // WARNING can currently change turn outside of this object, no bueno!
+    return { one, two, turn, switchTurns };
+})();
+
+console.log(player.turn)
