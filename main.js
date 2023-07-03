@@ -73,8 +73,9 @@ const createPlayer = (name, id, wins) => {
         wins = 0;
     }
 
-    return { name, id, wins, winsAdd, winsClear };
+    return Object.freeze({ name, id, wins, winsAdd, winsClear });
 }
+
 
 const player = (() => {
     const one = createPlayer('One', 'X', 0);
@@ -84,7 +85,7 @@ const player = (() => {
     const get = Object.freeze({
         one: () => { return one },
         two: () => { return two },
-        turn: () => { return two }
+        turn: () => { return turn }
     })
 
     function switchTurns() {
