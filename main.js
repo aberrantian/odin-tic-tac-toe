@@ -30,6 +30,12 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
             return true;
         }
     }
+        
+    function set(x, y, playerID) {
+        xyInRange(x, y);
+        let isLegal = array[x][y] == ' ';
+        
+        if (isLegal == false) {
             throw new Error(`Input is illegal`);
         }
 
