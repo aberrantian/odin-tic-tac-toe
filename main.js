@@ -64,16 +64,8 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
 })();
 
 
-const createPlayer = (name, id, wins) => {
-    function winsAdd() {
-        wins++;
-    }
-
-    function winsClear() {
-        wins = 0;
-    }
-
-    return Object.freeze({ name, id, wins, winsAdd, winsClear });
+const createPlayer = (name, id, wins = 0) => {
+      return { name, id, wins};
 }
 
 
@@ -85,12 +77,21 @@ const player = (() => {
     const get = Object.freeze({
         one: () => { return one },
         two: () => { return two },
-        turn: () => { return turn }
+        turn: () => { return turn },
+        wins: (player) => { return player.wins }
     })
 
     function switchTurns() {
         player.turn == one ? player.turn = player.two : player.turn = player.one
     }
 
-    return Object.freeze({ get, switchTurns });
+    function winsAdd(player) {
+        player.wins++;
+    }
+
+    function winsClear(player) {
+        player.wins = 0;
+    }
+
+    return Object.freeze({ get, switchTurns, winsAdd, winsClear });
 })();
