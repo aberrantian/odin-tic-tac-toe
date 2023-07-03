@@ -1,4 +1,5 @@
 'use strict';
+
 const GAME_BOARD = (function() {
     let array = [
     //    0    1    2
