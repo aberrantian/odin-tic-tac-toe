@@ -58,6 +58,8 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
             return array;
         }
     }
+
+    return Object.freeze({ set, print, clear, get });
 })();
 
 
