@@ -18,16 +18,18 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
         console.log(output)
     }
 
-    function set(x, y, playerID) {
-        xIsInRange = x >= 0 && x <= 2;
-        yIsInRange = y >= 0 && y <= 2;
-        isLegal = array[x][y] == ' ';
+    function xyInRange(x, y) {
+        let xIsInRange = x >= 0 && x <= 2;
+        let yIsInRange = y >= 0 && y <= 2;
 
         if (xIsInRange == false) {
             throw new Error(`X is out of range: ${x}`);
         } else if (yIsInRange == false) {
             throw new Error(`Y is out of range: ${y}`);
-        } else if (isLegal == false) {
+        } else {
+            return true;
+        }
+    }
             throw new Error(`Input is illegal`);
         }
 
