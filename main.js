@@ -50,7 +50,14 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
             ]
     }
 
-    return { set, print, clear };
+    function get(x, y) {
+        if (x && y) {
+            xyInRange(x, y);
+            return array[x][y];
+        } else {
+            return array;
+        }
+    }
 })();
 
 
