@@ -42,7 +42,7 @@ ${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
             ]
     }
 
-    return { array, set, print, clear };
+    return { set, print, clear };
 })();
 
 
@@ -62,12 +62,16 @@ const player = (() => {
     const one = createPlayer('One', 'X', 0);
     const two = createPlayer('Two', 'O', 0);
     let turn = one;
+
+    const get = Object.freeze({
+        one: () => { return one },
+        two: () => { return two },
+        turn: () => { return two }
+    })
+
     function switchTurns() {
         player.turn == one ? player.turn = player.two : player.turn = player.one
     }
 
-    // WARNING can currently change turn outside of this object, no bueno!
-    return { one, two, turn, switchTurns };
+    return Object.freeze({ get, switchTurns });
 })();
-
-console.log(player.turn)
