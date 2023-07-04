@@ -94,11 +94,11 @@ const player = (() => {
 
 
 function play(input) {
-    GAME_BOARD.set(input, player.get.turn().id);
+    GAME_BOARD.set(input - 1, player.get.turn().id);
     player.switchTurns();
     console.log(`Player ${player.get.turn().name}'s turn:`);
     GAME_BOARD.print();
 }
 
-console.log(`Player ${player.get.turn().name}'s turn:`);
+console.log(`Player ${player.get.turn().name}'s turn: Use 'play(<1-9>)' to play`);
 GAME_BOARD.print();
