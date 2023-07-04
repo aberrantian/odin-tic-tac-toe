@@ -1,6 +1,6 @@
 'use strict';
 
-const GAME_BOARD = (function() {
+const GAME_BOARD = (() => {
     let array = [
     //    0    1    2
         [' ', ' ', ' '], // 0
