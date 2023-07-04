@@ -95,13 +95,18 @@ const player = (() => {
 
 function isWon() {
     const array = GAME_BOARD.get()
-    const winPatterns = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-    ]
+    let marker;
+    let winners = [];
 
-    console.log(array);
+    if (array[0] != ' ') {
+        marker = array[0];
+
+        if (array[1] == marker && array[2] == marker) {
+            winners.push(marker);
+        }
+    }
+
+    console.log(winners);
 }
 
 function play(input) {
