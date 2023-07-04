@@ -78,7 +78,7 @@ const player = (() => {
     })
 
     function switchTurns() {
-        player.turn == one ? player.turn = player.two : player.turn = player.one
+        turn == one ? turn = two : turn = one
     }
 
     function winsAdd(player) {
@@ -89,7 +89,7 @@ const player = (() => {
         player.wins = 0;
     }
 
-    return Object.freeze({ get, switchTurns, winsAdd, winsClear });
+    return { get, switchTurns, winsAdd, winsClear };
 })();
 
 
