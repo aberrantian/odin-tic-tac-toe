@@ -93,22 +93,12 @@ const player = (() => {
 })();
 
 
-const GAME_LOOP = (() => {
-    let loop = true;
-
-    function isTrue() {
-        return loop ? true : false;
-    }
-
-    function toggle() {
-        loop ? loop = false : loop = true;
-    }
-
-    return Object.freeze({ isTrue, toggle });
-})();
-
-
-while (GAME_LOOP.isTrue()) {
-    GAME_LOOP.toggle();
-    console.log('ran once');
+function play(input) {
+    GAME_BOARD.set(input, player.get.turn().id);
+    player.switchTurns();
+    console.log(`Player ${player.get.turn().name}'s turn:`);
+    GAME_BOARD.print();
 }
+
+console.log(`Player ${player.get.turn().name}'s turn:`);
+GAME_BOARD.print();
