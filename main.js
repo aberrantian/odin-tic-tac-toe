@@ -2,59 +2,55 @@
 
 const GAME_BOARD = (() => {
     let array = [
-    //    0    1    2
-        [' ', ' ', ' '], // 0
-        [' ', ' ', ' '], // 1
-        [' ', ' ', ' ']  // 2
+        ' ', ' ', ' ',
+        ' ', ' ', ' ',
+        ' ', ' ', ' '
     ]
 
     function print() {
         const output = `\
-${array[0][0]} | ${array[0][1]} | ${array[0][2]}
+${array[0]} | ${array[1]} | ${array[2]}
 ---------
-${array[1][0]} | ${array[1][1]} | ${array[1][2]}
+${array[3]} | ${array[4]} | ${array[5]}
 ---------
-${array[2][0]} | ${array[2][1]} | ${array[2][2]}`;
+${array[6]} | ${array[7]} | ${array[8]}`;
 
         console.log(output)
     }
 
-    function xyInRange(x, y) {
-        let xIsInRange = x >= 0 && x <= 2;
-        let yIsInRange = y >= 0 && y <= 2;
+    function isInRange(x) {
+        let xIsInRange = x >= 0 && x <= 8;
 
         if (xIsInRange == false) {
             throw new Error(`X is out of range: ${x}`);
-        } else if (yIsInRange == false) {
-            throw new Error(`Y is out of range: ${y}`);
         } else {
             return true;
         }
     }
         
-    function set(x, y, playerID) {
-        xyInRange(x, y);
-        let isLegal = array[x][y] == ' ';
+    function set(x, playerID) {
+        isInRange(x);
+        let isLegal = array[x] == ' ';
         
         if (isLegal == false) {
             throw new Error(`Input is illegal`);
         }
 
-        array[x][y] = playerID;
+        array[x] = playerID;
     }
 
     function clear() {
         array = [
-                [' ', ' ', ' '],
-                [' ', ' ', ' '],
-                [' ', ' ', ' ']
-            ]
+            ' ', ' ', ' ',
+            ' ', ' ', ' ',
+            ' ', ' ', ' '
+        ]
     }
 
-    function get(x, y) {
-        if (x && y) {
-            xyInRange(x, y);
-            return array[x][y];
+    function get(x) {
+        if (x) {
+            isInRange(x);
+            return array[x];
         } else {
             return array;
         }
