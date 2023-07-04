@@ -95,3 +95,24 @@ const player = (() => {
 
     return Object.freeze({ get, switchTurns, winsAdd, winsClear });
 })();
+
+
+const GAME_LOOP = (() => {
+    let loop = true;
+
+    function isTrue() {
+        return loop ? true : false;
+    }
+
+    function toggle() {
+        loop ? loop = false : loop = true;
+    }
+
+    return Object.freeze({ isTrue, toggle });
+})();
+
+
+while (GAME_LOOP.isTrue()) {
+    GAME_LOOP.toggle();
+    console.log('ran once');
+}
