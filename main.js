@@ -93,6 +93,17 @@ const player = (() => {
 })();
 
 
+function isWon() {
+    const array = GAME_BOARD.get()
+    const winPatterns = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+
+    console.log(array);
+}
+
 function play(input) {
     GAME_BOARD.set(input - 1, player.get.turn().id);
     player.switchTurns();
