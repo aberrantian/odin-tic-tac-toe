@@ -95,18 +95,33 @@ const player = (() => {
 
 function isWon() {
     const array = GAME_BOARD.get()
-    let marker;
     let winners = [];
+    const winningPatterns = [
+        [1, 2, 3], // top left to top right
+        [1, 4, 7], // top left to bottom left
+        [1, 5, 9], // top left to bottom right
+        [2, 5, 8], // middle top to middle bottom
+        [3, 5, 7], // top right to bottom left
+        [3, 6, 9], // top right to bottom right
+        [4, 5, 6], // middle left to middle right
+        [7, 8, 9], // bottom left to bottom right
+    ]
 
-    if (array[0] != ' ') {
-        marker = array[0];
-
-        if (array[1] == marker && array[2] == marker) {
-            winners.push(marker);
+    for (let pattern = 0; pattern < winningPatterns.length; pattern++) {
+        // console.log(`checking pattern ${winningPatterns[pattern]}`);
+        
+        if (array[winningPatterns[pattern][0] - 1] != ' ') {
+            const marker = array[winningPatterns[pattern][0] - 1];
+            const second = array[winningPatterns[pattern][1] - 1];
+            const third = array[winningPatterns[pattern][2] - 1];
+            
+            if (second === marker && third === marker) {
+                console.log(`${marker} has won`);
+                break;
+            }
         }
     }
 
-    console.log(winners);
 }
 
 function play(input) {
