@@ -1,75 +1,83 @@
 'use strict';
 
 const GAME_BOARD = (() => {
-    let movesLeft = 9;
+    const cells = (() => {
+        let spare = 9;
+        function get() { return spare; };
+        function dec() { spare--; };
+        function reset() { spare = 9; };
 
-    function getMovesLeft() {
-        return movesLeft;
-    }
+        return { get, dec, reset };
+    })();
 
-    function decrementMoves() {
-        movesLeft--;
-    }
 
-    let array = [
-        ' ', ' ', ' ',
-        ' ', ' ', ' ',
-        ' ', ' ', ' '
-    ]
-
-    function print() {
-        const output = `\
-${array[0]} | ${array[1]} | ${array[2]}
----------
-${array[3]} | ${array[4]} | ${array[5]}
----------
-${array[6]} | ${array[7]} | ${array[8]}`;
-
-        console.log(output)
-    }
-
-    function isInRange(x) {
-        let xIsInRange = x >= 0 && x <= 8;
-
-        if (xIsInRange == false) {
-            throw new Error(`X is out of range: ${x}`);
-        } else {
-            return true;
-        }
-    }
-        
-    function set(x, playerID) {
-        isInRange(x);
-        let isLegal = array[x] == ' ';
-        
-        if (isLegal == false) {
-            throw new Error(`Input is illegal`);
-        }
-
-        array[x] = playerID;
-    }
-
-    function clear() {
-        array = [
+    const grid = (() => {
+        let array = [
             ' ', ' ', ' ',
             ' ', ' ', ' ',
             ' ', ' ', ' '
         ];
 
-        movesLeft = 9;
-    }
-
-    function get(x) {
-        if (x) {
-            isInRange(x);
-            return array[x];
-        } else {
-            return array;
+        function isInRange(x) {
+            let xIsInRange = x >= 0 && x <= 8;
+    
+            if (xIsInRange == false) {
+                throw new Error(`X is out of range: ${x}`);
+            } else {
+                return true;
+            }
         }
+        
+        function get(index) {
+            if (index != undefined && isInRange(index)) {
+                return array[index];
+            } else {
+                return array;
+            }
+        }
+
+        function set(index, marker) {
+            if (index === undefined) {
+                throw new Error('Index is required but has not been given');
+            } else if (marker === undefined) {
+                throw new Error('Marker is required but has not been given');
+            } else if (array[index] != ' ') {
+                throw new Error('Illegal move, cell is not empty');
+            }
+
+            array[index] = marker;
+        }
+
+        function reset() {
+            array = [
+                ' ', ' ', ' ',
+                ' ', ' ', ' ',
+                ' ', ' ', ' '
+            ];
+        }
+
+        function print() {
+            const output = `\
+${array[0]} | ${array[1]} | ${array[2]}
+---------
+${array[3]} | ${array[4]} | ${array[5]}
+---------
+${array[6]} | ${array[7]} | ${array[8]}
+`;
+
+            console.log(output);
+        }
+
+        return { get, set, reset, print };
+    })(); // grid
+    
+    function reset() {
+        cells.reset();
+        grid.reset();
     }
 
-    return Object.freeze({ set, print, clear, get, getMovesLeft, decrementMoves });
-})();
+    return { cells, grid, reset };
+})(); // GAME_BOARD
 
 
 const createPlayer = (name, id, wins = 0) => {
@@ -106,7 +114,7 @@ const player = (() => {
 
 
 function isWon() {
-    const array = GAME_BOARD.get()
+    const array = GAME_BOARD.grid.get();
     let winners = [];
     const winningPatterns = [
         [1, 2, 3], // top left to top right
@@ -129,7 +137,7 @@ function isWon() {
             
             if (second === marker && third === marker) {
                 console.log(`${marker} has won`);
-                GAME_BOARD.clear();
+                GAME_BOARD.reset();
                 break;
             }
         }
@@ -138,17 +146,17 @@ function isWon() {
 }
 
 function play(input) {
-    if (GAME_BOARD.getMovesLeft() > 0) {
-        GAME_BOARD.set(input - 1, player.get.turn().id);
-        GAME_BOARD.decrementMoves();
+    if (GAME_BOARD.cells.get() > 0) {
+        GAME_BOARD.grid.set(input - 1, player.get.turn().id);
+        GAME_BOARD.cells.dec();
         player.switchTurns();
-        console.log(`Player ${player.get.turn().name}'s turn:`);
-        GAME_BOARD.print();
+        console.log(`Player ${player.get.turn().id}'s turn`);
+        GAME_BOARD.grid.print();
         isWon();
     } else {
         console.log("It's a tie");
     }
 }
 
-console.log(`Player ${player.get.turn().name}'s turn: Use 'play(<1-9>)' to play`);
-GAME_BOARD.print();
+console.log(`Player ${player.get.turn().id}'s turn: Use 'play(<1-9>)' to play`);
+GAME_BOARD.grid.print();
