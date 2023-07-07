@@ -1,6 +1,16 @@
 'use strict';
 
 const GAME_BOARD = (() => {
+    let movesLeft = 9;
+
+    function getMovesLeft() {
+        return movesLeft;
+    }
+
+    function decrementMoves() {
+        movesLeft--;
+    }
+
     let array = [
         ' ', ' ', ' ',
         ' ', ' ', ' ',
@@ -44,7 +54,9 @@ ${array[6]} | ${array[7]} | ${array[8]}`;
             ' ', ' ', ' ',
             ' ', ' ', ' ',
             ' ', ' ', ' '
-        ]
+        ];
+
+        movesLeft = 9;
     }
 
     function get(x) {
@@ -56,7 +68,7 @@ ${array[6]} | ${array[7]} | ${array[8]}`;
         }
     }
 
-    return Object.freeze({ set, print, clear, get });
+    return Object.freeze({ set, print, clear, get, getMovesLeft, decrementMoves });
 })();
 
 
@@ -117,6 +129,7 @@ function isWon() {
             
             if (second === marker && third === marker) {
                 console.log(`${marker} has won`);
+                GAME_BOARD.clear();
                 break;
             }
         }
@@ -125,10 +138,16 @@ function isWon() {
 }
 
 function play(input) {
-    GAME_BOARD.set(input - 1, player.get.turn().id);
-    player.switchTurns();
-    console.log(`Player ${player.get.turn().name}'s turn:`);
-    GAME_BOARD.print();
+    if (GAME_BOARD.getMovesLeft() > 0) {
+        GAME_BOARD.set(input - 1, player.get.turn().id);
+        GAME_BOARD.decrementMoves();
+        player.switchTurns();
+        console.log(`Player ${player.get.turn().name}'s turn:`);
+        GAME_BOARD.print();
+        isWon();
+    } else {
+        console.log("It's a tie");
+    }
 }
 
 console.log(`Player ${player.get.turn().name}'s turn: Use 'play(<1-9>)' to play`);
