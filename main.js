@@ -80,12 +80,11 @@ ${array[6]} | ${array[7]} | ${array[8]}
 })(); // GAME_BOARD
 
 
-const createPlayer = (name, id, wins = 0) => {
-      return { name, id, wins};
-}
-
-
 const player = (() => {
+    const createPlayer = (name, id, wins = 0) => {
+          return { name, id, wins};
+    }
+
     const one = createPlayer('One', 'X', 0);
     const two = createPlayer('Two', 'O', 0);
     let turn = one;
