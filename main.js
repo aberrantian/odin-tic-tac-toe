@@ -157,3 +157,10 @@ function play(input) {
 
 console.log(`Player ${player.turn.get().marker}'s turn: Use 'play(<1-9>)' to play`);
 GAME_BOARD.grid.print();
+
+/*
+    TODO
+    create dumb ai that makes random legal moves
+    create mode tracker: human vs human or human vs computer
+    wrap gameloop into a while loop and allow for manual starting/stopping of game
+*/
