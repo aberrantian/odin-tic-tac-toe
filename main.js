@@ -108,7 +108,6 @@ const player = (() => {
 
 function isWon() {
     const array = GAME_BOARD.grid.get();
-    let winners = [];
     const winningPatterns = [
         [1, 2, 3], // top left to top right
         [1, 4, 7], // top left to bottom left
@@ -121,8 +120,6 @@ function isWon() {
     ]
 
     for (let pattern = 0; pattern < winningPatterns.length; pattern++) {
-        // console.log(`checking pattern ${winningPatterns[pattern]}`);
-        
         if (array[winningPatterns[pattern][0] - 1] != ' ') {
             const marker = array[winningPatterns[pattern][0] - 1];
             const second = array[winningPatterns[pattern][1] - 1];
@@ -131,6 +128,10 @@ function isWon() {
             if (second === marker && third === marker) {
                 console.log(`${marker} has won`);
                 GAME_BOARD.reset();
+                player.turn.get().wins.add();
+                player.turn.toggle();
+                console.log(`NEW GAME: ${player.turn.get().marker}'s turn`);
+                GAME_BOARD.grid.print();
                 break;
             }
         }
@@ -148,6 +149,9 @@ function play(input) {
         isWon();
     } else {
         console.log("It's a tie");
+        GAME_BOARD.reset();
+        console.log(`NEW GAME: ${player.turn.get().marker}'s turn`);
+        GAME_BOARD.grid.print();
     }
 }
 
