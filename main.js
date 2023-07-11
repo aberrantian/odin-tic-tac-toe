@@ -81,34 +81,28 @@ ${array[6]} | ${array[7]} | ${array[8]}
 
 
 const player = (() => {
-    const createPlayer = (name, id, wins = 0) => {
-          return { name, id, wins};
+    const createPlayer = (marker) => {
+        const wins = {
+            count: 0,
+            add: () => { wins.count++; },
+            reset: () => { wins.count = 0; }
+        }
+        
+        return { marker, wins };
     }
 
-    const one = createPlayer('One', 'X', 0);
-    const two = createPlayer('Two', 'O', 0);
-    let turn = one;
+    const X = createPlayer('X');
+    const O = createPlayer('O');
 
-    const get = Object.freeze({
-        one: () => { return one },
-        two: () => { return two },
-        turn: () => { return turn },
-        wins: (player) => { return player.wins }
-    })
+    const turn = (() => {
+        let current = X;
+        function get() { return current };
+        function toggle() { current == X ? current = O : current = X };
 
-    function switchTurns() {
-        turn == one ? turn = two : turn = one
-    }
+        return { get, toggle };
+    })();
 
-    function winsAdd(player) {
-        player.wins++;
-    }
-
-    function winsClear(player) {
-        player.wins = 0;
-    }
-
-    return { get, switchTurns, winsAdd, winsClear };
+    return { X, O, turn };
 })();
 
 
@@ -146,10 +140,10 @@ function isWon() {
 
 function play(input) {
     if (GAME_BOARD.cells.get() > 0) {
-        GAME_BOARD.grid.set(input - 1, player.get.turn().id);
+        GAME_BOARD.grid.set(input - 1, player.turn.get().marker);
         GAME_BOARD.cells.dec();
-        player.switchTurns();
-        console.log(`Player ${player.get.turn().id}'s turn`);
+        player.turn.toggle();
+        console.log(`Player ${player.turn.get().marker}'s turn`);
         GAME_BOARD.grid.print();
         isWon();
     } else {
@@ -157,5 +151,5 @@ function play(input) {
     }
 }
 
-console.log(`Player ${player.get.turn().id}'s turn: Use 'play(<1-9>)' to play`);
+console.log(`Player ${player.turn.get().marker}'s turn: Use 'play(<1-9>)' to play`);
 GAME_BOARD.grid.print();
