@@ -163,6 +163,8 @@ document.getElementById('local-pvp').addEventListener('click', () => {
     document.getElementById('game-board').hidden = false;
 });
 
+document.getElementById('local-pvp').click();
+
 document.getElementById('main-menu-btn').addEventListener('click', () => {
     document.getElementById('game-board').hidden = true;
     document.getElementById('main-menu').hidden = false;
