@@ -28,12 +28,19 @@ body {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    grid-template-columns: repeat(3, min-content);
+    grid-template-rows: repeat(3, min-content);
+    gap: 8px;
 }
 
 .cell {
-    height: 20px;
-    width: 20px;
+    --cell-size: 150px;
+    height: var(--cell-size);
+    width: var(--cell-size);
     background-color: grey;
+}
+
+.cell:hover {
+    background-color: lightgrey;
+    cursor: pointer;
 }
