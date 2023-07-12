@@ -10,8 +10,7 @@ body {
 }
 
 .screen[hidden] {
-    width: 0px;
-    height: 0px;
+    display: none;
 }
 
 .screen {
@@ -23,7 +22,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+button {
+    text-align: center;
+    padding: 4px 12px;
+}
+
+#nav-bar {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 16px;
+    
+    background-color: grey;
+}
+
+#turn-indicator {
+    text-align: center;
+    font-size: 4em;
 }
 
 #grid {
@@ -31,6 +50,7 @@ body {
     grid-template-columns: repeat(3, min-content);
     grid-template-rows: repeat(3, min-content);
     gap: 8px;
+    margin-bottom: 32px;
 }
 
 .cell {
@@ -43,4 +63,9 @@ body {
 .cell:hover {
     background-color: lightgrey;
     cursor: pointer;
+}
+
+#win-tracker {
+    display: flex;
+    background-color: grey;
 }
