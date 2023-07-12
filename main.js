@@ -158,6 +158,18 @@ function play(input) {
 console.log(`Player ${PLAYER.TURN.get().marker}'s turn: Use 'play(<1-9>)' to play`);
 GAMEBOARD.GRID.print();
 
+
+const GAME = (() => {
+    /*
+    start
+    stop
+    loop
+
+    return start, stop
+    */
+})();
+
+
 document.getElementById('local-pvp').addEventListener('click', () => {
     document.getElementById('main-menu').hidden = true;
     document.getElementById('game-board').hidden = false;
