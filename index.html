@@ -10,8 +10,10 @@
 <body>
     <div id="main-menu" class="screen" hidden></div>
     <div id="game-board" class="screen">
-        <div id="nav-bar"></div>
-        <div id="turn-indidicator"></div>
+        <div id="nav-bar">
+            <button id="main-menu-btn">Main Menu</button>
+        </div>
+        <div id="turn-indidicator">X</div>
         <div id="grid">
             <div class="cell"></div>
             <div class="cell"></div>
@@ -24,7 +26,10 @@
             <div class="cell"></div>
         </div>
         <div id="win-tracker">
-            
+            <p>X</p>
+            <div id="x-wins"></div>
+            <p>O</p>
+            <div id="o-wins"></div>
         </div>
     </div>
     <div id="game-over" class="screen" hidden></div>
