@@ -158,6 +158,16 @@ function play(input) {
 console.log(`Player ${player.turn.get().marker}'s turn: Use 'play(<1-9>)' to play`);
 GAME_BOARD.grid.print();
 
+document.getElementById('local-pvp').addEventListener('click', () => {
+    document.getElementById('main-menu').hidden = true;
+    document.getElementById('game-board').hidden = false;
+});
+
+document.getElementById('main-menu-btn').addEventListener('click', () => {
+    document.getElementById('game-board').hidden = true;
+    document.getElementById('main-menu').hidden = false;
+});
+
 /*
     TODO
     Main Task - Create UI to play current state of this project
