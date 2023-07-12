@@ -170,7 +170,7 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
 /*
     TODO
-    Main Task - Create UI to play current state of this project
+    Main Task - allow playing current state in current ui
     
     create dumb ai that makes random legal moves
     create mode tracker: human vs human or human vs computer
