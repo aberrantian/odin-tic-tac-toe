@@ -12,15 +12,24 @@ html {
 body {
     background-color: black;
     color: white;
-    height: 100%;
-    width: 100%;
+}
+
+.screen[hidden] {
+    width: 0px;
+    height: 0px;
 }
 
 .screen {
     background-color: white;
     color: black;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 }
 
 .cell {
