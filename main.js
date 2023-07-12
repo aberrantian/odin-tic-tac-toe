@@ -1,7 +1,7 @@
 'use strict';
 
-const GAME_BOARD = (() => {
-    const cells = (() => {
+const GAMEBOARD = (() => {
+    const CELLS = (() => {
         let spare = 9;
         function get() { return spare; };
         function dec() { spare--; };
@@ -11,7 +11,7 @@ const GAME_BOARD = (() => {
     })();
 
 
-    const grid = (() => {
+    const GRID = (() => {
         let array = [
             ' ', ' ', ' ',
             ' ', ' ', ' ',
@@ -57,7 +57,7 @@ const GAME_BOARD = (() => {
         }
 
         function print() {
-            const output = `\
+            const OUTPUT = `\
 ${array[0]} | ${array[1]} | ${array[2]}
 ---------
 ${array[3]} | ${array[4]} | ${array[5]}
@@ -65,36 +65,36 @@ ${array[3]} | ${array[4]} | ${array[5]}
 ${array[6]} | ${array[7]} | ${array[8]}
 `;
 
-            console.log(output);
+            console.log(OUTPUT);
         }
 
         return { get, set, reset, print };
-    })(); // grid
+    })(); // GRID
     
     function reset() {
-        cells.reset();
-        grid.reset();
+        CELLS.reset();
+        GRID.reset();
     }
 
-    return { cells, grid, reset };
-})(); // GAME_BOARD
+    return { CELLS, GRID, reset };
+})(); // GAMEBOARD
 
 
-const player = (() => {
+const PLAYER = (() => {
     const createPlayer = (marker) => {
-        const wins = {
+        const WINS = {
             count: 0,
-            add: () => { wins.count++; },
-            reset: () => { wins.count = 0; }
+            add: () => { WINS.count++; },
+            reset: () => { WINS.count = 0; }
         }
         
-        return { marker, wins };
+        return { marker, WINS };
     }
 
     const X = createPlayer('X');
     const O = createPlayer('O');
 
-    const turn = (() => {
+    const TURN = (() => {
         let current = X;
         function get() { return current };
         function toggle() { current == X ? current = O : current = X };
@@ -102,13 +102,13 @@ const player = (() => {
         return { get, toggle };
     })();
 
-    return { X, O, turn };
+    return { X, O, TURN };
 })();
 
 
 function isWon() {
-    const array = GAME_BOARD.grid.get();
-    const winningPatterns = [
+    const ARRAY = GAMEBOARD.GRID.get();
+    const WINNING_PATTERNS = [
         [1, 2, 3], // top left to top right
         [1, 4, 7], // top left to bottom left
         [1, 5, 9], // top left to bottom right
@@ -119,19 +119,19 @@ function isWon() {
         [7, 8, 9], // bottom left to bottom right
     ]
 
-    for (let pattern = 0; pattern < winningPatterns.length; pattern++) {
-        if (array[winningPatterns[pattern][0] - 1] != ' ') {
-            const marker = array[winningPatterns[pattern][0] - 1];
-            const second = array[winningPatterns[pattern][1] - 1];
-            const third = array[winningPatterns[pattern][2] - 1];
+    for (let pattern = 0; pattern < WINNING_PATTERNS.length; pattern++) {
+        if (ARRAY[WINNING_PATTERNS[pattern][0] - 1] != ' ') {
+            const MARKER = ARRAY[WINNING_PATTERNS[pattern][0] - 1];
+            const SECOND = ARRAY[WINNING_PATTERNS[pattern][1] - 1];
+            const THIRD = ARRAY[WINNING_PATTERNS[pattern][2] - 1];
             
-            if (second === marker && third === marker) {
-                console.log(`${marker} has won`);
-                GAME_BOARD.reset();
-                player.turn.get().wins.add();
-                player.turn.toggle();
-                console.log(`NEW GAME: ${player.turn.get().marker}'s turn`);
-                GAME_BOARD.grid.print();
+            if (SECOND === MARKER && THIRD === MARKER) {
+                console.log(`${MARKER} has won`);
+                GAMEBOARD.reset();
+                PLAYER.TURN.get().WINS.add();
+                PLAYER.TURN.toggle();
+                console.log(`NEW GAME: ${PLAYER.TURN.get().marker}'s turn`);
+                GAMEBOARD.GRID.print();
                 break;
             }
         }
@@ -140,23 +140,23 @@ function isWon() {
 }
 
 function play(input) {
-    if (GAME_BOARD.cells.get() > 0) {
-        GAME_BOARD.grid.set(input - 1, player.turn.get().marker);
-        GAME_BOARD.cells.dec();
-        player.turn.toggle();
-        console.log(`Player ${player.turn.get().marker}'s turn`);
-        GAME_BOARD.grid.print();
+    if (GAMEBOARD.CELLS.get() > 0) {
+        GAMEBOARD.GRID.set(input - 1, PLAYER.TURN.get().marker);
+        GAMEBOARD.CELLS.dec();
+        PLAYER.TURN.toggle();
+        console.log(`Player ${PLAYER.TURN.get().marker}'s turn`);
+        GAMEBOARD.GRID.print();
         isWon();
     } else {
         console.log("It's a tie");
-        GAME_BOARD.reset();
-        console.log(`NEW GAME: ${player.turn.get().marker}'s turn`);
-        GAME_BOARD.grid.print();
+        GAMEBOARD.reset();
+        console.log(`NEW GAME: ${PLAYER.TURN.get().marker}'s turn`);
+        GAMEBOARD.GRID.print();
     }
 }
 
-console.log(`Player ${player.turn.get().marker}'s turn: Use 'play(<1-9>)' to play`);
-GAME_BOARD.grid.print();
+console.log(`Player ${PLAYER.TURN.get().marker}'s turn: Use 'play(<1-9>)' to play`);
+GAMEBOARD.GRID.print();
 
 document.getElementById('local-pvp').addEventListener('click', () => {
     document.getElementById('main-menu').hidden = true;
