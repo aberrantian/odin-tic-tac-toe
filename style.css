@@ -31,6 +31,15 @@ button {
     padding: 4px 12px;
 }
 
+#main-menu {
+    justify-content: center;
+}
+
+#main-menu > div {
+    background-color: grey;
+    padding: 32px;
+}
+
 #nav-bar {
     width: 100%;
     text-align: center;
