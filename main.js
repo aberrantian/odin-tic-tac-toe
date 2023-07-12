@@ -160,6 +160,8 @@ GAME_BOARD.grid.print();
 
 /*
     TODO
+    Main Task - Create UI to play current state of this project
+    
     create dumb ai that makes random legal moves
     create mode tracker: human vs human or human vs computer
     wrap gameloop into a while loop and allow for manual starting/stopping of game
