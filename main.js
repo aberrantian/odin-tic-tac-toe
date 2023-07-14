@@ -199,9 +199,8 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
 /*
     TODO
-    Main Task - allow playing current state in current ui
+    Main Task - rewrite gameplay functions for GUI use
     
     create dumb ai that makes random legal moves
     create mode tracker: human vs human or human vs computer
-    wrap gameloop into a while loop and allow for manual starting/stopping of game
 */
