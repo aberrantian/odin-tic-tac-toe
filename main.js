@@ -3,11 +3,11 @@
 const GAMEBOARD = (() => {
     const CELLS = (() => {
         let spare = 9;
-        function get() { return spare; };
+        function count() { return spare; };
         function dec() { spare--; };
         function reset() { spare = 9; };
 
-        return { get, dec, reset };
+        return { count, dec, reset };
     })();
 
 
@@ -71,12 +71,17 @@ ${array[6]} | ${array[7]} | ${array[8]}
         return { get, set, reset, print };
     })(); // GRID
     
+    const CELL_ELEMENTS = document.getElementsByClassName('cell');
+
     function reset() {
         CELLS.reset();
         GRID.reset();
+        for (let index = 0; index < CELL_ELEMENTS.length; index++) {
+            CELL_ELEMENTS[index].innerText = '';
+        }
     }
 
-    return { CELLS, GRID, reset };
+    return { CELLS, GRID, CELL_ELEMENTS, reset };
 })(); // GAMEBOARD
 
 
@@ -107,7 +112,11 @@ const GAME = (() => {
     })();
     
     
-    function isWon() {
+    function checkState() {
+        if (GAMEBOARD.CELLS.count() <= 0) {
+            return [0]; // tie
+        }
+        
         const ARRAY = GAMEBOARD.GRID.get();
         const WINNING_PATTERNS = [
             [1, 2, 3], // top left to top right
@@ -127,58 +136,48 @@ const GAME = (() => {
                 const THIRD = ARRAY[WINNING_PATTERNS[pattern][2] - 1];
                 
                 if (SECOND === MARKER && THIRD === MARKER) {
-                    console.log(`${MARKER} has won`);
-                    GAMEBOARD.reset();
-                    PLAYER.TURN.get().WINS.add();
-                    PLAYER.TURN.toggle();
-                    console.log(`NEW GAME: ${PLAYER.TURN.get().marker}'s turn`);
-                    GAMEBOARD.GRID.print();
-                    break;
+                    return [ true, MARKER == 'X' ? 'X' : 'O' ];
                 }
             }
         }
     
+        return [-1]; // continue game
     }
-    
-    function play(input) {
-        if (GAMEBOARD.CELLS.get() > 0) {
-            GAMEBOARD.GRID.set(input - 1, PLAYER.TURN.get().marker);
-            GAMEBOARD.CELLS.dec();
-            PLAYER.TURN.toggle();
-            console.log(`Player ${PLAYER.TURN.get().marker}'s turn`);
-            GAMEBOARD.GRID.print();
-            isWon();
-        } else {
-            console.log("It's a tie");
-            GAMEBOARD.reset();
-            console.log(`NEW GAME: ${PLAYER.TURN.get().marker}'s turn`);
-            GAMEBOARD.GRID.print();
-        }
-    }
-
-    const gameplayElements = {
-        turnIndicator: document.getElementById('turn-indicator'),
-        cells: document.getElementsByClassName('cell'),
-        xWins: document.getElementById('x-wins'),
-        oWins: document.getElementById('o-wins')
-    };
 
     function getMarker() {
         return PLAYER.TURN.get().marker;
     }
 
     function updateTurnIndicator() {
-        gameplayElements.turnIndicator.innerText = getMarker();
+            gameplayElements.turnIndicator.innerText = getMarker();
     }
+
+    function play(input, event) {
+        GAMEBOARD.GRID.set(input, getMarker());
+        GAMEBOARD.CELLS.dec();
+        event.target.innerText = getMarker();
+        PLAYER.TURN.toggle();
+        updateTurnIndicator();
+    }
+
+    const gameplayElements = {
+        turnIndicator: document.getElementById('turn-indicator'),
+        cells: GAMEBOARD.CELL_ELEMENTS,
+        xWins: document.getElementById('x-wins'),
+        oWins: document.getElementById('o-wins')
+    };
 
     for (let index = 0; index < gameplayElements.cells.length; index++) {
         gameplayElements.cells[index].addEventListener('click', (event) => {
-            try {
-                event.target.innerText = getMarker();
-                play(index + 1);
-                updateTurnIndicator();
-            } catch (error) {
-                // do nothing
+            play(index, event);
+
+            if (checkState() == 0) {
+                // tie
+                GAMEBOARD.reset();
+            } else if (checkState()[0] == true) {
+                console.log(`${checkState()[1]} is the winner`);
+
+                GAMEBOARD.reset();
             }
         })
     }
