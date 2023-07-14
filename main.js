@@ -160,13 +160,20 @@ GAMEBOARD.GRID.print();
 
 
 const GAME = (() => {
-    /*
-    start
-    stop
-    loop
+    // init
+    const gameplayElements = {
+        turnIndicator: document.getElementById('turn-indicator'),
+        cells: document.getElementsByClassName('cell'),
+        xWins: document.getElementById('x-wins'),
+        oWins: document.getElementById('o-wins')
+    };
 
-    return start, stop
-    */
+    for (let index = 0; index < gameplayElements.cells.length; index++) {
+        // console.log(gameplayElements.cells[index])
+        gameplayElements.cells[index].addEventListener('click', (event) => {
+            console.log(event.target);
+        })
+    }
 })();
 
 
