@@ -168,10 +168,23 @@ const GAME = (() => {
         oWins: document.getElementById('o-wins')
     };
 
+    function getMarker() {
+        return PLAYER.TURN.get().marker;
+    }
+
+    function updateTurnIndicator() {
+        gameplayElements.turnIndicator.innerText = getMarker();
+    }
+
     for (let index = 0; index < gameplayElements.cells.length; index++) {
-        // console.log(gameplayElements.cells[index])
         gameplayElements.cells[index].addEventListener('click', (event) => {
-            console.log(event.target);
+            try {
+                event.target.innerText = getMarker();
+                play(index + 1);
+                updateTurnIndicator();
+            } catch (error) {
+                // do nothing
+            }
         })
     }
 })();
