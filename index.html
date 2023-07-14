@@ -14,11 +14,24 @@
             <button id="local-pvc">Local PvC</button>
         </div>
     </div>
+
     <div id="game-board" class="screen" hidden>
         <div id="nav-bar">
             <button id="main-menu-btn">Main Menu</button>
         </div>
-        <div id="turn-indicator">X</div>
+
+        <div id="hud">
+            <div>
+                <p>X</p>
+                <div id="x-wins">0</div>
+            </div>
+            <div id="turn-indicator">X</div>
+            <div>
+                <p>O</p>
+                <div id="o-wins">0</div>
+            </div>
+        </div>
+
         <div id="grid">
             <div class="cell"></div>
             <div class="cell"></div>
@@ -29,16 +42,6 @@
             <div class="cell"></div>
             <div class="cell"></div>
             <div class="cell"></div>
-        </div>
-        <div id="win-tracker">
-            <div>
-                <p>X</p>
-                <div id="x-wins">0</div>
-            </div>
-            <div>
-                <p>O</p>
-                <div id="o-wins">0</div>
-            </div>
         </div>
     </div>
 </body>

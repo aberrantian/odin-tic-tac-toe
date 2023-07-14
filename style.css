@@ -74,12 +74,11 @@ button {
     cursor: pointer;
 }
 
-#win-tracker {
-    display: flex;
-    background-color: grey;
-    font-size: 2em;
-}
+#hud {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin-bottom: 16px;
+    text-align: center;
 
-#win-tracker > div {
-    margin: 0px 16px;
+    background-color: grey;
 }
