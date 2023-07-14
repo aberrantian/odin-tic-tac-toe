@@ -89,9 +89,10 @@ const GAME = (() => {
     const PLAYER = (() => {
         const createPlayer = (marker) => {
             const WINS = {
-                count: 0,
-                add: () => { WINS.count++; },
-                reset: () => { WINS.count = 0; }
+                counter: 0,
+                count: () => { return WINS.counter },
+                add: () => { WINS.counter++; },
+                reset: () => { WINS.counter = 0; }
             }
             
             return { marker, WINS };
@@ -176,6 +177,14 @@ const GAME = (() => {
                 GAMEBOARD.reset();
             } else if (checkState()[0] == true) {
                 console.log(`${checkState()[1]} is the winner`);
+
+                if (checkState()[1] == 'X') {
+                    PLAYER.X.WINS.add();
+                    gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
+                } else {
+                    PLAYER.O.WINS.add();
+                    gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
+                }
 
                 GAMEBOARD.reset();
             }
