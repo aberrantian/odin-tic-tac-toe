@@ -67,6 +67,10 @@ button {
     height: var(--cell-size);
     width: var(--cell-size);
     background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
 }
 
 .cell:hover {
