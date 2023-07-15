@@ -207,8 +207,7 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
 /*
     TODO
-    Main Task - rewrite gameplay functions for GUI use
-    
-    create dumb ai that makes random legal moves
+    Main Task - create dumb ai that makes random legal moves
+
     create mode tracker: human vs human or human vs computer
 */
