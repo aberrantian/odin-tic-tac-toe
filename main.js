@@ -174,10 +174,10 @@ const GAME = (() => {
             gameplayElements.turnIndicator.innerText = getMarker();
     }
 
-    function play(input, event) {
+    function play(input) {
         GAMEBOARD.GRID.set(input, getMarker());
         GAMEBOARD.CELLS.dec();
-        event.target.innerText = getMarker();
+        GAMEBOARD.CELL_ELEMENTS[input].innerText = getMarker();
         PLAYER.TURN.toggle();
         updateTurnIndicator();
     }
@@ -190,8 +190,8 @@ const GAME = (() => {
     };
 
     for (let index = 0; index < gameplayElements.cells.length; index++) {
-        gameplayElements.cells[index].addEventListener('click', (event) => {
-            play(index, event);
+        gameplayElements.cells[index].addEventListener('click', () => {
+            play(index);
 
             if (checkState() == 0) {
                 // tie
