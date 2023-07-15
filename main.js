@@ -118,7 +118,8 @@ const GAME = (() => {
         }
         
         function computerPlay() {
-            const MOVE = Math.floor(Math.random() * legalCells.length);
+            const legalCellsIndex = Math.floor(Math.random() * legalCells.length);
+            const MOVE = legalCells[legalCellsIndex];
             play(MOVE);
         }
 
@@ -129,6 +130,7 @@ const GAME = (() => {
         GAMEBOARD.reset();
         PLAYER.X.WINS.reset();
         PLAYER.O.WINS.reset();
+        COMPUTER.resetLegalCells();
         gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
         gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
     }
@@ -192,6 +194,27 @@ const GAME = (() => {
         return [-1]; // continue game
     }
 
+    function updateGame() {
+        if (checkState() == 0) {
+            // tie
+            GAMEBOARD.reset();
+            COMPUTER.resetLegalCells();
+        } else if (checkState()[0] == true) {
+            console.log(`${checkState()[1]} is the winner`);
+
+            if (checkState()[1] == 'X') {
+                PLAYER.X.WINS.add();
+                gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
+            } else {
+                PLAYER.O.WINS.add();
+                gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
+            }
+
+            GAMEBOARD.reset();
+            COMPUTER.resetLegalCells();
+        }
+    }
+
     function getMarker() {
         return PLAYER.TURN.get().marker;
     }
@@ -203,9 +226,11 @@ const GAME = (() => {
     function play(input) {
         GAMEBOARD.GRID.set(input, getMarker());
         GAMEBOARD.CELLS.dec();
+        GAME.COMPUTER.banCell(input);
         GAMEBOARD.CELL_ELEMENTS[input].innerText = getMarker();
         PLAYER.TURN.toggle();
         updateTurnIndicator();
+        updateGame();
     }
 
     const gameplayElements = {
@@ -218,26 +243,9 @@ const GAME = (() => {
     for (let index = 0; index < gameplayElements.cells.length; index++) {
         gameplayElements.cells[index].addEventListener('click', () => {
             play(index);
-
+            
             if (GAME.MODE.get() === 'PvC') {
                 GAME.COMPUTER.computerPlay();
-            }
-
-            if (checkState() == 0) {
-                // tie
-                GAMEBOARD.reset();
-            } else if (checkState()[0] == true) {
-                console.log(`${checkState()[1]} is the winner`);
-
-                if (checkState()[1] == 'X') {
-                    PLAYER.X.WINS.add();
-                    gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
-                } else {
-                    PLAYER.O.WINS.add();
-                    gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
-                }
-
-                GAMEBOARD.reset();
             }
         })
     }
