@@ -86,6 +86,14 @@ ${array[6]} | ${array[7]} | ${array[8]}
 
 
 const GAME = (() => {
+    function reset() {
+        GAMEBOARD.reset();
+        PLAYER.X.WINS.reset();
+        PLAYER.O.WINS.reset();
+        gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
+        gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
+    }
+    
     const PLAYER = (() => {
         const createPlayer = (marker) => {
             const WINS = {
@@ -190,6 +198,8 @@ const GAME = (() => {
             }
         })
     }
+
+    return { reset };
 })();
 
 
@@ -203,6 +213,7 @@ document.getElementById('local-pvp').click();
 document.getElementById('main-menu-btn').addEventListener('click', () => {
     document.getElementById('game-board').hidden = true;
     document.getElementById('main-menu').hidden = false;
+    GAME.reset();
 });
 
 /*
