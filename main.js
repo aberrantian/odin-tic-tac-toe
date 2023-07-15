@@ -99,6 +99,32 @@ const GAME = (() => {
         return { get, SET };
     })();
     
+    const COMPUTER = (() => {
+        let legalCells = [];
+        function resetLegalCells() {
+            legalCells = [
+                0, 1, 2,
+                3, 4, 5,
+                6, 7, 8
+            ];
+        }
+        resetLegalCells();
+
+        function banCell(cell) {
+            const index = legalCells.indexOf(cell);
+            if (index > -1) {
+                legalCells.splice(index, 1);
+            }
+        }
+        
+        function computerPlay() {
+            const MOVE = Math.floor(Math.random() * legalCells.length);
+            play(MOVE);
+        }
+
+        return { resetLegalCells, banCell, computerPlay };
+    })();
+
     function reset() {
         GAMEBOARD.reset();
         PLAYER.X.WINS.reset();
@@ -193,6 +219,10 @@ const GAME = (() => {
         gameplayElements.cells[index].addEventListener('click', () => {
             play(index);
 
+            if (GAME.MODE.get() === 'PvC') {
+                GAME.COMPUTER.computerPlay();
+            }
+
             if (checkState() == 0) {
                 // tie
                 GAMEBOARD.reset();
@@ -212,7 +242,7 @@ const GAME = (() => {
         })
     }
 
-    return { reset, MODE };
+    return { reset, MODE, COMPUTER };
 })();
 
 
