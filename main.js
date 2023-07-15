@@ -86,6 +86,19 @@ ${array[6]} | ${array[7]} | ${array[8]}
 
 
 const GAME = (() => {
+    const MODE = (() => {
+        let mode;
+        function get() { return mode };
+        const SET = (() => {
+            function PvP() { mode = 'PvP' }
+            function PvC() { mode = 'PvC' }
+
+            return { PvC, PvP }
+        })();
+
+        return { get, SET };
+    })();
+    
     function reset() {
         GAMEBOARD.reset();
         PLAYER.X.WINS.reset();
@@ -199,16 +212,21 @@ const GAME = (() => {
         })
     }
 
-    return { reset };
+    return { reset, MODE };
 })();
 
 
 document.getElementById('local-pvp').addEventListener('click', () => {
+    GAME.MODE.SET.PvP();
     document.getElementById('main-menu').hidden = true;
     document.getElementById('game-board').hidden = false;
 });
 
-document.getElementById('local-pvp').click();
+document.getElementById('local-pvc').addEventListener('click', () => {
+    GAME.MODE.SET.PvC();
+    document.getElementById('main-menu').hidden = true;
+    document.getElementById('game-board').hidden = false;
+})
 
 document.getElementById('main-menu-btn').addEventListener('click', () => {
     document.getElementById('game-board').hidden = true;
