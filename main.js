@@ -161,6 +161,49 @@ const GAME = (() => {
         return { X, O, TURN };
     })();
     
+    function showWinningPattern(patternIndex) {
+        const CELLS = GAMEBOARD.CELL_ELEMENTS;
+        function addClass(index1, index2, index3) {
+            CELLS[index1].classList.add('win-cell')
+            CELLS[index2].classList.add('win-cell')
+            CELLS[index3].classList.add('win-cell')
+        }
+
+        switch (patternIndex) {
+            case 0:
+                addClass(0, 1, 2);
+                break;
+            case 1:
+                addClass(0, 3, 6);
+                break;
+            case 2:
+                addClass(0, 4, 8);
+                break;
+            case 3:
+                addClass(1, 4, 7);
+                break;
+            case 4:
+                addClass(2, 4, 6);
+                break;
+            case 5:
+                addClass(2, 5, 8);
+                break;
+            case 6:
+                addClass(3, 4, 5);
+                break;
+            case 7:
+                addClass(6, 7, 8);
+                break;               
+        }
+    }
+
+    function clearWinningPattern() {
+        const CELLS = document.getElementsByClassName('win-cell');
+
+        for (let index = 0; index < CELLS.length; index++) {
+            CELLS[index].classList.remove('win-cell');
+        }
+    }
     
     function checkState() {
         if (GAMEBOARD.CELLS.count() <= 0) {
@@ -186,6 +229,7 @@ const GAME = (() => {
                 const THIRD = ARRAY[WINNING_PATTERNS[pattern][2] - 1];
                 
                 if (SECOND === MARKER && THIRD === MARKER) {
+                    showWinningPattern(pattern);
                     return [ true, MARKER == 'X' ? 'X' : 'O' ];
                 }
             }
@@ -198,6 +242,7 @@ const GAME = (() => {
         if (checkState() == 0) {
             // tie
             setTimeout(() => {
+                clearWinningPattern();
                 GAMEBOARD.reset();
                 COMPUTER.resetLegalCells();
             }, 1000)
@@ -213,6 +258,7 @@ const GAME = (() => {
             }
 
             setTimeout(() => {
+                clearWinningPattern();
                 GAMEBOARD.reset();
                 COMPUTER.resetLegalCells();
             }, 1000)
