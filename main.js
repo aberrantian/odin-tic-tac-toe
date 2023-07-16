@@ -330,4 +330,7 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 /*
     TODO
     Main Task - create smart bot
+
+    BUGS
+        - player wins increment in twos
 */
