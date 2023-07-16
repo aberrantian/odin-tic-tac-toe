@@ -273,11 +273,6 @@ const GAME = (() => {
             gameplayElements.turnIndicator.innerText = getMarker();
     }
 
-    /*
-    when bot is playing
-        prevent user from playing
-    */
-
     function play(input) {
         GAMEBOARD.GRID.set(input, getMarker());
         GAMEBOARD.CELLS.dec();
