@@ -329,7 +329,8 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
 /*
     TODO
-    Main Task - prevent user from spamming inputs when bot is playing
+    Main Task - create smart bot
 
-    create mode tracker: human vs human or human vs computer
+    BUGS:
+        - player can spam moves while it is bot's turn    
 */
