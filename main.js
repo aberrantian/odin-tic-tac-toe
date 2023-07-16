@@ -120,7 +120,10 @@ const GAME = (() => {
         function computerPlay() {
             const legalCellsIndex = Math.floor(Math.random() * legalCells.length);
             const MOVE = legalCells[legalCellsIndex];
-            play(MOVE);
+
+            if (GAMEBOARD.CELLS.count() > 0) {
+                play(MOVE);
+            }
         }
 
         return { resetLegalCells, banCell, computerPlay };
