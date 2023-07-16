@@ -197,8 +197,10 @@ const GAME = (() => {
     function updateGame() {
         if (checkState() == 0) {
             // tie
-            GAMEBOARD.reset();
-            COMPUTER.resetLegalCells();
+            setTimeout(() => {
+                GAMEBOARD.reset();
+                COMPUTER.resetLegalCells();
+            }, 1000)
         } else if (checkState()[0] == true) {
             console.log(`${checkState()[1]} is the winner`);
 
@@ -210,8 +212,10 @@ const GAME = (() => {
                 gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
             }
 
-            GAMEBOARD.reset();
-            COMPUTER.resetLegalCells();
+            setTimeout(() => {
+                GAMEBOARD.reset();
+                COMPUTER.resetLegalCells();
+            }, 1000)
         }
     }
 
@@ -245,7 +249,7 @@ const GAME = (() => {
             play(index);
             
             if (GAME.MODE.get() === 'PvC') {
-                GAME.COMPUTER.computerPlay();
+                setTimeout(GAME.COMPUTER.computerPlay, 500)
             }
         })
     }
