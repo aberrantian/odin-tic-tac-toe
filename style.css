@@ -82,6 +82,10 @@ button {
     background-color: green;
 }
 
+.win-cell:hover {
+    background-color: green;
+}
+
 #hud {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
