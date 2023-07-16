@@ -300,7 +300,7 @@ const GAME = (() => {
             play(index);
             
             if (GAME.MODE.get() === 'PvC') {
-                setTimeout(GAME.COMPUTER.computerPlay, 500)
+                GAME.COMPUTER.computerPlay();
             }
         })
     }
@@ -330,7 +330,4 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 /*
     TODO
     Main Task - create smart bot
-
-    BUGS:
-        - player can spam moves while it is bot's turn    
 */
