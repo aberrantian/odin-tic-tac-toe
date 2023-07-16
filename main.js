@@ -273,6 +273,11 @@ const GAME = (() => {
             gameplayElements.turnIndicator.innerText = getMarker();
     }
 
+    /*
+    when bot is playing
+        prevent user from playing
+    */
+
     function play(input) {
         GAMEBOARD.GRID.set(input, getMarker());
         GAMEBOARD.CELLS.dec();
@@ -324,7 +329,7 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
 /*
     TODO
-    Main Task - create dumb ai that makes random legal moves
+    Main Task - prevent user from spamming inputs when bot is playing
 
     create mode tracker: human vs human or human vs computer
 */
