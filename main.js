@@ -253,9 +253,11 @@ const GAME = (() => {
             console.log(`${checkState()[1]} is the winner`);
 
             if (checkState()[1] == 'X') {
+                console.log('adding point for X')
                 PLAYER.X.WINS.add();
                 gameplayElements.xWins.innerText = PLAYER.X.WINS.count();
             } else {
+                console.log('adding point for O')
                 PLAYER.O.WINS.add();
                 gameplayElements.oWins.innerText = PLAYER.O.WINS.count();
             }
@@ -331,4 +333,5 @@ document.getElementById('main-menu-btn').addEventListener('click', () => {
 
     BUGS
         - player wins increment in twos
+        - win cells don't fully clear after new round
 */
