@@ -117,7 +117,7 @@ const GAME = (() => {
             }
         }
         
-        function computerPlay() {
+        function playRandom() {
             const legalCellsIndex = Math.floor(Math.random() * legalCells.length);
             const MOVE = legalCells[legalCellsIndex];
 
@@ -126,7 +126,11 @@ const GAME = (() => {
             }
         }
 
-        return { resetLegalCells, banCell, computerPlay };
+        const PLAY = {
+            random: playRandom
+        }
+
+        return { resetLegalCells, banCell, PLAY };
     })();
 
     function reset() {
@@ -300,7 +304,7 @@ const GAME = (() => {
             play(index);
             
             if (GAME.MODE.get() === 'PvC') {
-                GAME.COMPUTER.computerPlay();
+                GAME.COMPUTER.PLAY.random();
             }
         })
     }
