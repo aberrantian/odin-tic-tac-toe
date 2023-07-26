@@ -20,6 +20,8 @@ GAME
 */
 
 const MAIN = (() => {
+  const CELL_ELEMENTS = document.getElementsByClassName("cell");
+
   const GRID_ARRAY = (() => {
     let array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
@@ -63,6 +65,12 @@ const MAIN = (() => {
     if (IN_RANGE && IS_LEGAL) {
       GRID_ARRAY.set(index);
       TURN.toggle();
+    }
+  }
+
+  function draw() {
+    for (let index = 0; index < CELL_ELEMENTS.length; index++) {
+      CELL_ELEMENTS[index].innerText = GRID_ARRAY.get()[index];
     }
   }
 })();
