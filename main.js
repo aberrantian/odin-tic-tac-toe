@@ -62,6 +62,7 @@ const MAIN = (() => {
 
     if (IN_RANGE && IS_LEGAL) {
       GRID_ARRAY.set(index);
+      TURN.toggle();
     }
   }
 })();
