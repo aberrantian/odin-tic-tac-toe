@@ -27,9 +27,9 @@ const MAIN = (() => {
       return array;
     }
 
-    function set(index, value) {
+    function set(index) {
       if (array[index] === " ") {
-        array[index] = value;
+        array[index] = TURN.get();
       } else {
         console.warn(`Cell ${index} is already filled with ${array[index]}`);
       }
@@ -55,6 +55,15 @@ const MAIN = (() => {
 
     return { get, toggle };
   })();
+
+  function play(index) {
+    const IN_RANGE = index >= 0 && index <= 8;
+    const IS_LEGAL = GRID_ARRAY.get()[index] === " ";
+
+    if (IN_RANGE && IS_LEGAL) {
+      GRID_ARRAY.set(index);
+    }
+  }
 })();
 
 document.getElementById("local-pvp").addEventListener("click", () => {
