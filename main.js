@@ -34,8 +34,12 @@ const MAIN = (() => {
   const GRID_ARRAY = (() => {
     let array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
-    function get() {
-      return array;
+    function get(index) {
+      if (index !== undefined) {
+        return array[index];
+      } else {
+        return array;
+      }
     }
 
     function set(index) {
