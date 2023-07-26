@@ -1,24 +1,5 @@
 "use strict";
 
-/*
-GAME
-  GRID
-    array
-  MODE
-    PvP
-    PvC
-  PLAYER
-    marker
-    wins
-  COMPUTER
-    random_ai
-    minimax_ai
-  evalGame()
-    check for winners
-      increase win counter for winner
-    check for tie
-*/
-
 const MAIN = (() => {
   const CELL_ELEMENTS = document.getElementsByClassName("cell");
 
