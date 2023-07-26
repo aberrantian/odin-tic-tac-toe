@@ -41,6 +41,20 @@ const MAIN = (() => {
 
     return { get, set, reset };
   })();
+
+  const TURN = (() => {
+    let turn = "X";
+
+    function get() {
+      return turn;
+    }
+
+    function toggle() {
+      turn === "X" ? (turn = "O") : (turn = "X");
+    }
+
+    return { get, toggle };
+  })();
 })();
 
 document.getElementById("local-pvp").addEventListener("click", () => {
