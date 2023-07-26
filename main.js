@@ -22,6 +22,15 @@ GAME
 const MAIN = (() => {
   const CELL_ELEMENTS = document.getElementsByClassName("cell");
 
+  const INIT = (() => {
+    for (let index = 0; index < CELL_ELEMENTS.length; index++) {
+      CELL_ELEMENTS[index].addEventListener("click", () => {
+        play(index);
+        draw();
+      });
+    }
+  })();
+
   const GRID_ARRAY = (() => {
     let array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
