@@ -31,6 +31,10 @@ button {
   padding: 4px 12px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 #main-menu {
   justify-content: center;
 }
