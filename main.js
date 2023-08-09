@@ -93,6 +93,24 @@ const MAIN = (() => {
     console.log(`ROW_WIN = ${ROW_WIN}`);
     console.log(`COLUMN_WIN = ${COLUMN_WIN}`);
     // check for tie
+    const TIE = (() => {
+      let empty_cells = 9;
+      const ARRAY = GRID_ARRAY.get();
+      for (let index = 0; index < ARRAY.length; index++) {
+        if (ARRAY[index] != " ") {
+          empty_cells--;
+        }
+      }
+
+      if (
+        empty_cells <= 0 &&
+        DIAGONAL_WIN === false &&
+        ROW_WIN === false &&
+        COLUMN_WIN === false
+      ) {
+        return 0;
+      }
+    })();
   } // evaluate()
 
   function draw() {
