@@ -10,7 +10,7 @@ const MAIN = (() => {
         draw();
       });
     }
-  })();
+  })(); // INIT
 
   const GRID_ARRAY = (() => {
     let array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -36,7 +36,7 @@ const MAIN = (() => {
     }
 
     return { get, set, reset };
-  })();
+  })(); // GRID_ARRAY
 
   const TURN = (() => {
     let turn = "X";
@@ -50,7 +50,7 @@ const MAIN = (() => {
     }
 
     return { get, toggle };
-  })();
+  })(); // TURN
 
   function play(index) {
     const IN_RANGE = index >= 0 && index <= 8;
@@ -61,7 +61,7 @@ const MAIN = (() => {
       evaluate(index);
       TURN.toggle();
     }
-  }
+  } // play()
 
   function evaluate(move) {
     const ROW = Math.floor(move / 3);
@@ -93,13 +93,13 @@ const MAIN = (() => {
     console.log(`ROW_WIN = ${ROW_WIN}`);
     console.log(`COLUMN_WIN = ${COLUMN_WIN}`);
     // check for tie
-  }
+  } // evaluate()
 
   function draw() {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
       CELL_ELEMENTS[index].innerText = GRID_ARRAY.get()[index];
     }
-  }
+  } // draw()
 })(); // MAIN
 
 document.getElementById("local-pvp").addEventListener("click", () => {
