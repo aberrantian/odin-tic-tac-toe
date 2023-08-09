@@ -71,9 +71,15 @@ const MAIN = (() => {
       [GRID_ARRAY.get()[3], GRID_ARRAY.get()[4], GRID_ARRAY.get()[5]],
       [GRID_ARRAY.get()[6], GRID_ARRAY.get()[7], GRID_ARRAY.get()[8]],
     ];
-
+    const MARKER = ARRAY[ROW][INDEX];
     // check for 3 in a row
-
+    if (
+      ARRAY[ROW][0] === MARKER &&
+      ARRAY[ROW][1] === MARKER &&
+      ARRAY[ROW][2] === MARKER
+    ) {
+      console.log(`${MARKER} has won`);
+    }
     // check for 3 in a column
 
     // check for diagonal
