@@ -72,24 +72,26 @@ const MAIN = (() => {
       [GRID_ARRAY.get()[6], GRID_ARRAY.get()[7], GRID_ARRAY.get()[8]],
     ];
     const MARKER = ARRAY[ROW][INDEX];
-    // check for 3 in a row
-    if (
+
+    const DIAGONAL_WIN =
+      ARRAY[0][0] === MARKER &&
+      ARRAY[1][1] === MARKER &&
+      ARRAY[2][2] === MARKER;
+
+    const ROW_WIN =
       ARRAY[ROW][0] === MARKER &&
       ARRAY[ROW][1] === MARKER &&
-      ARRAY[ROW][2] === MARKER
-    ) {
-      return MARKER;
-    }
-    // check for 3 in a column
-    if (
+      ARRAY[ROW][2] === MARKER;
+
+    const COLUMN_WIN =
       ARRAY[0][INDEX] === MARKER &&
       ARRAY[1][INDEX] === MARKER &&
-      ARRAY[2][INDEX] === MARKER
-    ) {
-      return MARKER;
-    }
-    // check for diagonal
+      ARRAY[2][INDEX] === MARKER;
 
+    console.clear();
+    console.log(`DIAGONAL_WIN = ${DIAGONAL_WIN}`);
+    console.log(`ROW_WIN = ${ROW_WIN}`);
+    console.log(`COLUMN_WIN = ${COLUMN_WIN}`);
     // check for tie
   }
 
