@@ -117,6 +117,8 @@ const MAIN = (() => {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
       CELL_ELEMENTS[index].innerText = GRID_ARRAY.get()[index];
     }
+
+    document.getElementById("turn-indicator").innerText = TURN.get();
   } // draw()
 })(); // MAIN
 
