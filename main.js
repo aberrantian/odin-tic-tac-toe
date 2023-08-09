@@ -81,7 +81,13 @@ const MAIN = (() => {
       return MARKER;
     }
     // check for 3 in a column
-
+    if (
+      ARRAY[0][INDEX] === MARKER &&
+      ARRAY[1][INDEX] === MARKER &&
+      ARRAY[2][INDEX] === MARKER
+    ) {
+      return MARKER;
+    }
     // check for diagonal
 
     // check for tie
