@@ -58,8 +58,27 @@ const MAIN = (() => {
 
     if (IN_RANGE && IS_LEGAL) {
       GRID_ARRAY.set(index);
+      evaluate(index);
       TURN.toggle();
     }
+  }
+
+  function evaluate(move) {
+    const ROW = Math.floor(move / 3);
+    const INDEX = move - ROW * 3;
+    const ARRAY = [
+      [GRID_ARRAY.get()[0], GRID_ARRAY.get()[1], GRID_ARRAY.get()[2]],
+      [GRID_ARRAY.get()[3], GRID_ARRAY.get()[4], GRID_ARRAY.get()[5]],
+      [GRID_ARRAY.get()[6], GRID_ARRAY.get()[7], GRID_ARRAY.get()[8]],
+    ];
+
+    // check for 3 in a row
+
+    // check for 3 in a column
+
+    // check for diagonal
+
+    // check for tie
   }
 
   function draw() {
@@ -67,7 +86,7 @@ const MAIN = (() => {
       CELL_ELEMENTS[index].innerText = GRID_ARRAY.get()[index];
     }
   }
-})();
+})(); // MAIN
 
 document.getElementById("local-pvp").addEventListener("click", () => {
   document.getElementById("main-menu").hidden = true;
