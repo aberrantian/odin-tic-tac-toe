@@ -78,7 +78,7 @@ const MAIN = (() => {
       ARRAY[ROW][1] === MARKER &&
       ARRAY[ROW][2] === MARKER
     ) {
-      console.log(`${MARKER} has won`);
+      return MARKER;
     }
     // check for 3 in a column
 
