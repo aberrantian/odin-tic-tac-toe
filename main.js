@@ -91,6 +91,8 @@ const MAIN = (() => {
       ARRAY[1][INDEX] === MARKER &&
       ARRAY[2][INDEX] === MARKER;
 
+    const WIN = DIAGONAL_WIN || ROW_WIN || COLUMN_WIN;
+
     console.clear();
     console.log(`DIAGONAL_WIN = ${DIAGONAL_WIN}`);
     console.log(`ROW_WIN = ${ROW_WIN}`);
@@ -114,7 +116,16 @@ const MAIN = (() => {
         return 0;
       }
     })();
+
+    if (WIN) {
+      gameOver(MARKER);
+    }
   } // evaluate()
+
+  function gameOver(MARKER) {
+    document.getElementById("winner-text").innerText = MARKER;
+    document.getElementById("game-over-screen").hidden = false;
+  }
 
   function draw() {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
