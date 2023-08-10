@@ -23,7 +23,7 @@ const MAIN = (() => {
 
     document.getElementById("main-menu-btn").addEventListener("click", () => {
       document.getElementById("game-board").hidden = true;
-      MAIN.reset();
+      reset();
       document.getElementById("main-menu").hidden = false;
     });
 
