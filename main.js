@@ -135,17 +135,18 @@ const MAIN = (() => {
         ROW_WIN === false &&
         COLUMN_WIN === false
       ) {
-        return 0;
+        gameOver("It's a tie!");
+        return;
       }
     })();
 
     if (WIN) {
-      gameOver(MARKER);
+      gameOver(`The winner is\n${MARKER}`);
     }
   } // evaluate()
 
-  function gameOver(MARKER) {
-    document.getElementById("winner-text").innerText = MARKER;
+  function gameOver(TEXT) {
+    document.getElementById("game-over-text").innerText = TEXT;
     document.getElementById("game-over-screen").hidden = false;
   }
 
