@@ -74,9 +74,12 @@ const MAIN = (() => {
     const MARKER = ARRAY[ROW][INDEX];
 
     const DIAGONAL_WIN =
-      ARRAY[0][0] === MARKER &&
-      ARRAY[1][1] === MARKER &&
-      ARRAY[2][2] === MARKER;
+      (ARRAY[0][0] === MARKER &&
+        ARRAY[1][1] === MARKER &&
+        ARRAY[2][2] === MARKER) ||
+      (ARRAY[0][2] === MARKER &&
+        ARRAY[1][1] === MARKER &&
+        ARRAY[2][0] === MARKER);
 
     const ROW_WIN =
       ARRAY[ROW][0] === MARKER &&
