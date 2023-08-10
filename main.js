@@ -157,3 +157,10 @@ const MAIN = (() => {
     draw();
   }
 })(); // MAIN
+
+/*
+TODO
+
+add minimax bot
+create theme
+*/
