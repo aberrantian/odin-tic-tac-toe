@@ -115,11 +115,6 @@ const MAIN = (() => {
 
     const WIN = DIAGONAL_WIN || ROW_WIN || COLUMN_WIN;
 
-    console.clear();
-    console.log(`DIAGONAL_WIN = ${DIAGONAL_WIN}`);
-    console.log(`ROW_WIN = ${ROW_WIN}`);
-    console.log(`COLUMN_WIN = ${COLUMN_WIN}`);
-    // check for tie
     const TIE = (() => {
       let empty_cells = 9;
       const ARRAY = GRID_ARRAY.get();
@@ -136,9 +131,8 @@ const MAIN = (() => {
         COLUMN_WIN === false
       ) {
         gameOver("It's a tie!");
-        return;
       }
-    })();
+    })(); // TIE
 
     if (WIN) {
       gameOver(`The winner is\n${MARKER}`);
