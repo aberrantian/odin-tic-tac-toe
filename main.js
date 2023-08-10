@@ -155,6 +155,4 @@ const MAIN = (() => {
     GRID_ARRAY.reset();
     draw();
   }
-
-  return { reset };
 })(); // MAIN
