@@ -10,6 +10,22 @@ const MAIN = (() => {
         draw();
       });
     }
+
+    document.getElementById("local-pvp").addEventListener("click", () => {
+      document.getElementById("main-menu").hidden = true;
+      document.getElementById("game-board").hidden = false;
+    });
+
+    document.getElementById("local-pvc").addEventListener("click", () => {
+      document.getElementById("main-menu").hidden = true;
+      document.getElementById("game-board").hidden = false;
+    });
+
+    document.getElementById("main-menu-btn").addEventListener("click", () => {
+      document.getElementById("game-board").hidden = true;
+      MAIN.reset();
+      document.getElementById("main-menu").hidden = false;
+    });
   })(); // INIT
 
   const GRID_ARRAY = (() => {
@@ -142,21 +158,3 @@ const MAIN = (() => {
 
   return { reset };
 })(); // MAIN
-
-document.getElementById("local-pvp").addEventListener("click", () => {
-  document.getElementById("main-menu").hidden = true;
-  document.getElementById("game-board").hidden = false;
-});
-
-document.getElementById("local-pvc").addEventListener("click", () => {
-  document.getElementById("main-menu").hidden = true;
-  document.getElementById("game-board").hidden = false;
-});
-
-document.getElementById("main-menu-btn").addEventListener("click", () => {
-  document.getElementById("game-board").hidden = true;
-  MAIN.reset();
-  document.getElementById("main-menu").hidden = false;
-});
-
-// document.getElementById("local-pvp").click();
