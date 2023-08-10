@@ -26,6 +26,12 @@ const MAIN = (() => {
       MAIN.reset();
       document.getElementById("main-menu").hidden = false;
     });
+
+    document.getElementById("restart-btn").addEventListener("click", () => {
+      GRID_ARRAY.reset();
+      draw();
+      document.getElementById("game-over-screen").hidden = true;
+    });
   })(); // INIT
 
   const GRID_ARRAY = (() => {
