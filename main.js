@@ -13,7 +13,7 @@ const MAIN = (() => {
   })(); // INIT
 
   const GRID_ARRAY = (() => {
-    let array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+    let array = ["", "", "", "", "", "", "", "", ""];
 
     function get(index) {
       if (index !== undefined) {
@@ -24,7 +24,7 @@ const MAIN = (() => {
     }
 
     function set(index) {
-      if (array[index] === " ") {
+      if (array[index] === "") {
         array[index] = TURN.get();
       } else {
         console.warn(`Cell ${index} is already filled with ${array[index]}`);
@@ -32,7 +32,7 @@ const MAIN = (() => {
     }
 
     function reset() {
-      array = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+      array = ["", "", "", "", "", "", "", "", ""];
     }
 
     return { get, set, reset };
@@ -54,7 +54,7 @@ const MAIN = (() => {
 
   function play(index) {
     const IN_RANGE = index >= 0 && index <= 8;
-    const IS_LEGAL = GRID_ARRAY.get()[index] === " ";
+    const IS_LEGAL = GRID_ARRAY.get()[index] === "";
 
     if (IN_RANGE && IS_LEGAL) {
       GRID_ARRAY.set(index);
@@ -97,7 +97,7 @@ const MAIN = (() => {
       let empty_cells = 9;
       const ARRAY = GRID_ARRAY.get();
       for (let index = 0; index < ARRAY.length; index++) {
-        if (ARRAY[index] != " ") {
+        if (ARRAY[index] != "") {
           empty_cells--;
         }
       }
