@@ -123,6 +123,13 @@ const MAIN = (() => {
 
     document.getElementById("turn-indicator").innerText = TURN.get();
   } // draw()
+
+  function reset() {
+    GRID_ARRAY.reset();
+    draw();
+  }
+
+  return { reset };
 })(); // MAIN
 
 document.getElementById("local-pvp").addEventListener("click", () => {
@@ -135,9 +142,10 @@ document.getElementById("local-pvc").addEventListener("click", () => {
   document.getElementById("game-board").hidden = false;
 });
 
-// document.getElementById("main-menu-btn").addEventListener("click", () => {
-//   document.getElementById("game-board").hidden = true;
-//   document.getElementById("main-menu").hidden = false;
-// });
+document.getElementById("main-menu-btn").addEventListener("click", () => {
+  document.getElementById("game-board").hidden = true;
+  MAIN.reset();
+  document.getElementById("main-menu").hidden = false;
+});
 
-document.getElementById("local-pvp").click();
+// document.getElementById("local-pvp").click();
