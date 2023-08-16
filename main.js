@@ -245,7 +245,10 @@ const MAIN = (() => {
     const LEGAL_MOVES = (() => {
       let legal_indexes = [];
 
-      function update(array = GRID_ARRAY.get()) {
+      function update() {
+        legal_indexes = [];
+
+        let array = GRID_ARRAY.get();
         for (let index = 0; index < array.length; index++) {
           if (array[index] === "") {
             legal_indexes.push(index);
@@ -261,7 +264,12 @@ const MAIN = (() => {
     })(); // LEGAL_MOVES
 
     function play() {
-      console.log("computer play");
+      LEGAL_MOVES.update();
+      const MOVE = LEGAL_MOVES.get()[0];
+      GRID_ARRAY.set(MOVE);
+      LEGAL_MOVES.update();
+      evaluate(MOVE);
+      TURN.toggle();
     }
 
     return { play };
