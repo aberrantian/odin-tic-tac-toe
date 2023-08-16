@@ -234,6 +234,12 @@ const MAIN = (() => {
 
       return { update, get };
     })(); // LEGAL_MOVES
+
+    function play() {
+      console.log("computer play");
+    }
+
+    return { play };
   })(); // COMPUTER
 })(); // MAIN
 
