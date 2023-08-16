@@ -68,8 +68,7 @@ const MAIN = (() => {
     });
 
     document.getElementById("restart-btn").addEventListener("click", () => {
-      GRID_ARRAY.reset();
-      draw();
+      reset();
       document.getElementById("game-over-screen").hidden = true;
     });
   })(); // INIT
@@ -122,6 +121,10 @@ const MAIN = (() => {
       GRID_ARRAY.set(index);
       evaluate(index);
       TURN.toggle();
+
+      if (GAME_OVER.get() === false && GAME_MODE.get() === "pvc") {
+        COMPUTER.play();
+      }
     }
   } // play()
 
@@ -180,6 +183,10 @@ const MAIN = (() => {
   } // evaluate()
 
   function gameOver(TEXT) {
+    if (GAME_OVER.get() === false) {
+      GAME_OVER.toggle();
+    }
+
     document.getElementById("game-over-text").innerText = TEXT;
     document.getElementById("game-over-screen").hidden = false;
   }
@@ -193,6 +200,10 @@ const MAIN = (() => {
   } // draw()
 
   function reset() {
+    if (GAME_OVER.get() === true) {
+      GAME_OVER.toggle();
+    }
+
     GRID_ARRAY.reset();
     draw();
   }
