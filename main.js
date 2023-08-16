@@ -15,7 +15,21 @@ const MAIN = (() => {
     }
 
     return { get, toggle };
-  })();
+  })(); // GAME_MODE
+
+  const GAME_OVER = (() => {
+    let game_over = false;
+
+    function toggle() {
+      game_over === false ? (game_over = true) : (game_over = false);
+    }
+
+    function get() {
+      return game_over;
+    }
+
+    return { get, toggle };
+  })(); // GAME_OVER
 
   const INIT = (() => {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
