@@ -245,7 +245,7 @@ const MAIN = (() => {
     const LEGAL_MOVES = (() => {
       let legal_indexes = [];
 
-      function update(array) {
+      function update(array = GRID_ARRAY.get()) {
         for (let index = 0; index < array.length; index++) {
           if (array[index] === "") {
             legal_indexes.push(index);
