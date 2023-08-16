@@ -263,7 +263,6 @@ const MAIN = (() => {
       LEGAL_MOVES.update();
       const MOVE = LEGAL_MOVES.get()[0];
       GRID_ARRAY.set(MOVE);
-      LEGAL_MOVES.update();
       evaluate(MOVE);
       TURN.toggle();
     }
