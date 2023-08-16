@@ -46,8 +46,6 @@ const MAIN = (() => {
 
       document.getElementById("main-menu").hidden = true;
       document.getElementById("game-board").hidden = false;
-
-      console.log(GAME_MODE.get());
     });
 
     document.getElementById("local-pvc").addEventListener("click", () => {
@@ -57,8 +55,6 @@ const MAIN = (() => {
 
       document.getElementById("main-menu").hidden = true;
       document.getElementById("game-board").hidden = false;
-
-      console.log(GAME_MODE.get());
     });
 
     document.getElementById("main-menu-btn").addEventListener("click", () => {
