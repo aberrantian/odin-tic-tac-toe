@@ -3,6 +3,20 @@
 const MAIN = (() => {
   const CELL_ELEMENTS = document.getElementsByClassName("cell");
 
+  const GAME_MODE = (() => {
+    let mode = "pvp";
+
+    function get() {
+      return mode;
+    }
+
+    function toggle() {
+      mode === "pvp" ? (mode = "pvc") : (mode = "pvp");
+    }
+
+    return { get, toggle };
+  })();
+
   const INIT = (() => {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
       CELL_ELEMENTS[index].addEventListener("click", () => {
@@ -12,13 +26,25 @@ const MAIN = (() => {
     }
 
     document.getElementById("local-pvp").addEventListener("click", () => {
+      if (GAME_MODE.get() != "pvp") {
+        GAME_MODE.toggle();
+      }
+
       document.getElementById("main-menu").hidden = true;
       document.getElementById("game-board").hidden = false;
+
+      console.log(GAME_MODE.get());
     });
 
     document.getElementById("local-pvc").addEventListener("click", () => {
+      if (GAME_MODE.get() != "pvc") {
+        GAME_MODE.toggle();
+      }
+
       document.getElementById("main-menu").hidden = true;
       document.getElementById("game-board").hidden = false;
+
+      console.log(GAME_MODE.get());
     });
 
     document.getElementById("main-menu-btn").addEventListener("click", () => {
