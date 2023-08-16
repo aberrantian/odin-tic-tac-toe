@@ -214,6 +214,6 @@ const MAIN = (() => {
 /*
 TODO
 
-add minimax bot
+add minimax bot with alpha beta pruning
 create theme
 */
