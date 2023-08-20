@@ -164,7 +164,7 @@ const MAIN = (() => {
       }
 
       if (
-        empty_cells <= 0 &&
+        empty_cells === 0 &&
         DIAGONAL_WIN === false &&
         ROW_WIN === false &&
         COLUMN_WIN === false
