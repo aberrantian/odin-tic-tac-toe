@@ -238,6 +238,24 @@ const MAIN = (() => {
       return { get, toggle, set };
     })(); // TURN
 
+    function minimax(state) {
+      /*
+      if Terminal(state):
+        return Value(state)
+      
+      if Player(state) === MAX:
+        value = -Infinity
+        for action in Actions(state):
+          value = Max(value, minimax(Result(state, action)))
+        return value
+
+      if Player(state) === MIN:
+        value = Infinity
+          value = Min(value, minimax(Result(state, action)))
+        return value
+      */
+    }
+
     const LEGAL_MOVES = (() => {
       let legal_indexes = [];
 
