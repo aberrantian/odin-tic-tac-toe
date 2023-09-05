@@ -240,7 +240,17 @@ const MAIN = (() => {
 
     function result(state, action) {}
 
-    function actions(state) {}
+    function actions(state) {
+      let legal_actions = [];
+
+      for (let index = 0; index < state.length; index++) {
+        if (state[index] === "") {
+          legal_actions.push(index);
+        }
+      }
+
+      return legal_actions;
+    }
 
     function player(state) {}
 
