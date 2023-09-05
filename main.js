@@ -205,39 +205,6 @@ const MAIN = (() => {
   }
 
   const COMPUTER = (() => {
-    let real_board;
-
-    function updateBoard() {
-      real_board = GRID_ARRAY.get();
-    }
-
-    let human_marker;
-
-    let computer_marker;
-
-    function updateMarkers(human, computer) {
-      human_marker = human.toUpperCase();
-      computer_marker = computer.toUpperCase();
-    }
-
-    const FAKE_TURN = (() => {
-      let turn;
-
-      function set(marker) {
-        turn = marker.toUpperCase();
-      }
-
-      function get() {
-        return turn;
-      }
-
-      function toggle() {
-        turn === "X" ? (turn = "O") : (turn = "X");
-      }
-
-      return { get, toggle, set };
-    })(); // TURN
-
     function result(state, action, marker) {
       state[action] = marker;
       return state;
@@ -257,7 +224,7 @@ const MAIN = (() => {
 
     function player(state) {}
 
-    function value(state) {}
+    function value(state, max_marker) {}
 
     function terminal(state) {
       return actions(state).length > 0 ? false : true;
@@ -287,36 +254,7 @@ const MAIN = (() => {
       }
     }
 
-    const LEGAL_MOVES = (() => {
-      let legal_indexes = [];
-
-      function update() {
-        legal_indexes = [];
-
-        let array = GRID_ARRAY.get();
-        for (let index = 0; index < array.length; index++) {
-          if (array[index] === "") {
-            legal_indexes.push(index);
-          }
-        }
-      }
-
-      function get() {
-        return legal_indexes;
-      }
-
-      return { update, get };
-    })(); // LEGAL_MOVES
-
-    function play() {
-      LEGAL_MOVES.update();
-      const MOVE = LEGAL_MOVES.get()[0];
-      GRID_ARRAY.set(MOVE);
-      evaluate(MOVE);
-      TURN.toggle();
-    }
-
-    return { play };
+    return {};
   })(); // COMPUTER
 })(); // MAIN
 
