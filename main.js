@@ -238,22 +238,38 @@ const MAIN = (() => {
       return { get, toggle, set };
     })(); // TURN
 
-    function minimax(state) {
-      /*
-      if Terminal(state):
-        return Value(state)
-      
-      if Player(state) === MAX:
-        value = -Infinity
-        for action in Actions(state):
-          value = Max(value, minimax(Result(state, action)))
-        return value
+    function result(state, action) {}
 
-      if Player(state) === MIN:
-        value = Infinity
-          value = Min(value, minimax(Result(state, action)))
-        return value
-      */
+    function actions(state) {}
+
+    function player(state) {}
+
+    function value(state) {}
+
+    function terminal(state) {}
+
+    function minimax(state) {
+      if (terminal(state) === true) {
+        return value(state);
+      }
+
+      if (player(state) === "max") {
+        value = -Infinity;
+
+        actions(state).forEach((action) => {
+          value = Max(value, minimax(result(state, action)));
+        });
+
+        return value;
+      } else {
+        value = Infinity;
+
+        actions(state).forEach((action) => {
+          value = Min(value, minimax(result(state, action)));
+        });
+
+        return value;
+      }
     }
 
     const LEGAL_MOVES = (() => {
