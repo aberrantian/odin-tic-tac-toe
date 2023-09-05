@@ -238,7 +238,10 @@ const MAIN = (() => {
       return { get, toggle, set };
     })(); // TURN
 
-    function result(state, action) {}
+    function result(state, action, marker) {
+      state[action] = marker;
+      return state;
+    }
 
     function actions(state) {
       let legal_actions = [];
