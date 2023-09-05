@@ -256,7 +256,9 @@ const MAIN = (() => {
 
     function value(state) {}
 
-    function terminal(state) {}
+    function terminal(state) {
+      return actions(state).length > 0 ? false : true;
+    }
 
     function minimax(state) {
       if (terminal(state) === true) {
