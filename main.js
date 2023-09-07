@@ -232,12 +232,30 @@ const MAIN = (() => {
       return legal_actions;
     }
 
-    function player(state) {}
+    function player(state) {
+      let x_marker_count = 0; // min player
+      let o_marker_count = 0; // max player
+
+      for (let index = 0; index < state.length; index++) {
+        if (state[index] === "X") {
+          x_marker_count++;
+        } else if (state[index] === "O") {
+          o_marker_count++;
+        }
+      }
+
+      if (x_marker_count > o_marker_count) {
+        return "max";
+      } else {
+        return "min";
+      }
+    }
 
     function value(state, max_marker) {}
 
     function terminal(state) {
       return actions(state).length > 0 ? false : true;
+      // needs to check for wins
     }
 
     function minimax(state) {
