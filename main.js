@@ -53,6 +53,11 @@ const MAIN = (() => {
         GAME_MODE.toggle();
       }
 
+      if (TURN.get() !== "X") {
+        TURN.toggle();
+        draw();
+      }
+
       document.getElementById("main-menu").hidden = true;
       document.getElementById("game-board").hidden = false;
     });
@@ -119,7 +124,7 @@ const MAIN = (() => {
       TURN.toggle();
 
       if (GAME_OVER.get() === false && GAME_MODE.get() === "pvc") {
-        COMPUTER.play();
+        // COMPUTER.play();
       }
     }
   } // play()
@@ -201,6 +206,7 @@ const MAIN = (() => {
     }
 
     GRID_ARRAY.reset();
+    TURN.toggle();
     draw();
   }
 
