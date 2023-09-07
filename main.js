@@ -128,9 +128,9 @@ const MAIN = (() => {
     const ROW = Math.floor(move / 3);
     const INDEX = move - ROW * 3;
     const ARRAY = [
-      [GRID_ARRAY.get()[0], GRID_ARRAY.get()[1], GRID_ARRAY.get()[2]],
-      [GRID_ARRAY.get()[3], GRID_ARRAY.get()[4], GRID_ARRAY.get()[5]],
-      [GRID_ARRAY.get()[6], GRID_ARRAY.get()[7], GRID_ARRAY.get()[8]],
+      [GRID_ARRAY.get(0), GRID_ARRAY.get(1), GRID_ARRAY.get(2)],
+      [GRID_ARRAY.get(3), GRID_ARRAY.get(4), GRID_ARRAY.get(5)],
+      [GRID_ARRAY.get(6), GRID_ARRAY.get(7), GRID_ARRAY.get(8)],
     ];
     const MARKER = ARRAY[ROW][INDEX];
 
