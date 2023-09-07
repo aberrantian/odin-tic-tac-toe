@@ -205,6 +205,10 @@ const MAIN = (() => {
   }
 
   const COMPUTER = (() => {
+    const STATE = (array, turn, value) => {
+      return { array, turn, value };
+    };
+
     function result(state, action, marker) {
       state[action] = marker;
       return state;
