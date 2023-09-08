@@ -288,6 +288,8 @@ const MAIN = (() => {
 
       if (DIAGONAL_WIN || ROW_WIN || COLUMN_WIN) {
         return true;
+      } else {
+        return false;
       }
     }
 
