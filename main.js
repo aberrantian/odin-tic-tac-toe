@@ -217,9 +217,24 @@ const MAIN = (() => {
       return { array, turn, value };
     };
 
-    function result(state, action, marker) {
-      state[action] = marker;
-      return state;
+    function result(state, action) {
+      let marker;
+
+      if (player(state) === "max") {
+        marker = "O";
+      } else if (player(state) === "min") {
+        marker = "X";
+      }
+
+      let new_state = [];
+
+      for (let index = 0; index < state.length; index++) {
+        new_state[index] = state[index];
+      }
+
+      new_state[action] = marker;
+
+      return new_state;
     }
 
     function actions(state) {
