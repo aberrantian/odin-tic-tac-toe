@@ -275,33 +275,27 @@ const MAIN = (() => {
         return true;
       }
 
-      const ARRAY = [
-        [state[0], state[1], state[2]],
-        [state[3], state[4], state[5]],
-        [state[6], state[7], state[8]],
-      ];
-
       const DIAGONAL_WIN =
-        (ARRAY[0][0] === "X" && ARRAY[1][1] === "X" && ARRAy[2][2] === "X") ||
-        (ARRAY[0][0] === "O" && ARRAY[1][1] === "O" && ARRAy[2][2] === "O") ||
-        (ARRAY[0][2] === "X" && ARRAY[1][1] === "X" && ARRAy[2][0] === "X") ||
-        (ARRAY[0][2] === "O" && ARRAY[1][1] === "O" && ARRAy[2][0] === "O");
+        (state[0] === "X" && state[4] === "X" && state[8] === "X") ||
+        (state[0] === "O" && state[4] === "O" && state[8] === "O") ||
+        (state[2] === "X" && state[4] === "X" && state[6] === "X") ||
+        (state[2] === "O" && state[4] === "O" && state[6] === "O");
 
       const ROW_WIN =
-        (ARRAY[0][0] === "X" && ARRAY[0][1] === "X" && ARRAY[0][2] === "X") ||
-        (ARRAY[0][0] === "O" && ARRAY[0][1] === "O" && ARRAY[0][2] === "O") ||
-        (ARRAY[1][0] === "X" && ARRAY[1][1] === "X" && ARRAY[1][2] === "X") ||
-        (ARRAY[1][0] === "O" && ARRAY[1][1] === "O" && ARRAY[1][2] === "O") ||
-        (ARRAY[2][0] === "X" && ARRAY[2][1] === "X" && ARRAY[2][2] === "X") ||
-        (ARRAY[2][0] === "O" && ARRAY[2][1] === "O" && ARRAY[2][2] === "O");
+        (state[0] === "X" && state[1] === "X" && state[2] === "X") ||
+        (state[0] === "O" && state[1] === "O" && state[2] === "O") ||
+        (state[3] === "X" && state[4] === "X" && state[5] === "X") ||
+        (state[3] === "O" && state[4] === "O" && state[5] === "O") ||
+        (state[6] === "X" && state[7] === "X" && state[8] === "X") ||
+        (state[6] === "O" && state[7] === "O" && state[8] === "O");
 
       const COLUMN_WIN =
-        (ARRAY[0][0] === "X" && ARRAY[1][0] === "X" && ARRAY[2][0] === "X") ||
-        (ARRAY[0][0] === "O" && ARRAY[1][0] === "O" && ARRAY[2][0] === "O") ||
-        (ARRAY[0][1] === "X" && ARRAY[1][1] === "X" && ARRAY[2][1] === "X") ||
-        (ARRAY[0][1] === "O" && ARRAY[1][1] === "O" && ARRAY[2][1] === "O") ||
-        (ARRAY[0][2] === "X" && ARRAY[1][2] === "X" && ARRAY[2][2] === "X") ||
-        (ARRAY[0][2] === "O" && ARRAY[1][2] === "O" && ARRAY[2][2] === "O");
+        (state[0] === "X" && state[3] === "X" && state[6] === "X") ||
+        (state[0] === "O" && state[3] === "O" && state[6] === "O") ||
+        (state[1] === "X" && state[4] === "X" && state[7] === "X") ||
+        (state[1] === "O" && state[4] === "O" && state[7] === "O") ||
+        (state[2] === "X" && state[5] === "X" && state[8] === "X") ||
+        (state[2] === "O" && state[5] === "O" && state[8] === "O");
 
       if (DIAGONAL_WIN || ROW_WIN || COLUMN_WIN) {
         return true;
