@@ -211,6 +211,8 @@ const MAIN = (() => {
   }
 
   const COMPUTER = (() => {
+    // MAX = O
+    // MIN = X
     const STATE = (array, turn, value) => {
       return { array, turn, value };
     };
