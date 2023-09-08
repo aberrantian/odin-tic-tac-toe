@@ -254,8 +254,41 @@ const MAIN = (() => {
     function value(state, max_marker) {}
 
     function terminal(state) {
-      return actions(state).length > 0 ? false : true;
-      // needs to check for wins
+      if (actions(state).length === 0) {
+        return true;
+      }
+
+      const ARRAY = [
+        [state[0], state[1], state[2]],
+        [state[3], state[4], state[5]],
+        [state[6], state[7], state[8]],
+      ];
+
+      const DIAGONAL_WIN =
+        (ARRAY[0][0] === "X" && ARRAY[1][1] === "X" && ARRAy[2][2] === "X") ||
+        (ARRAY[0][0] === "O" && ARRAY[1][1] === "O" && ARRAy[2][2] === "O") ||
+        (ARRAY[0][2] === "X" && ARRAY[1][1] === "X" && ARRAy[2][0] === "X") ||
+        (ARRAY[0][2] === "O" && ARRAY[1][1] === "O" && ARRAy[2][0] === "O");
+
+      const ROW_WIN =
+        (ARRAY[0][0] === "X" && ARRAY[0][1] === "X" && ARRAY[0][2] === "X") ||
+        (ARRAY[0][0] === "O" && ARRAY[0][1] === "O" && ARRAY[0][2] === "O") ||
+        (ARRAY[1][0] === "X" && ARRAY[1][1] === "X" && ARRAY[1][2] === "X") ||
+        (ARRAY[1][0] === "O" && ARRAY[1][1] === "O" && ARRAY[1][2] === "O") ||
+        (ARRAY[2][0] === "X" && ARRAY[2][1] === "X" && ARRAY[2][2] === "X") ||
+        (ARRAY[2][0] === "O" && ARRAY[2][1] === "O" && ARRAY[2][2] === "O");
+
+      const COLUMN_WIN =
+        (ARRAY[0][0] === "X" && ARRAY[1][0] === "X" && ARRAY[2][0] === "X") ||
+        (ARRAY[0][0] === "O" && ARRAY[1][0] === "O" && ARRAY[2][0] === "O") ||
+        (ARRAY[0][1] === "X" && ARRAY[1][1] === "X" && ARRAY[2][1] === "X") ||
+        (ARRAY[0][1] === "O" && ARRAY[1][1] === "O" && ARRAY[2][1] === "O") ||
+        (ARRAY[0][2] === "X" && ARRAY[1][2] === "X" && ARRAY[2][2] === "X") ||
+        (ARRAY[0][2] === "O" && ARRAY[1][2] === "O" && ARRAY[2][2] === "O");
+
+      if (DIAGONAL_WIN || ROW_WIN || COLUMN_WIN) {
+        return true;
+      }
     }
 
     function minimax(state) {
