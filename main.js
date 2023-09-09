@@ -213,10 +213,6 @@ const MAIN = (() => {
   const COMPUTER = (() => {
     // MAX = O
     // MIN = X
-    const STATE = (array, turn, value) => {
-      return { array, turn, value };
-    };
-
     function result(state, action) {
       let marker;
 
@@ -358,7 +354,7 @@ const MAIN = (() => {
       }
     }
 
-    console.log(minimax(["", "", "", "", "", "", "", "", ""]));
+    console.log(minimax(["O", "O", "", "X", "X", "", "X", "", ""]));
 
     return {};
   })(); // COMPUTER
