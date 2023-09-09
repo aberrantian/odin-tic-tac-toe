@@ -340,23 +340,25 @@ const MAIN = (() => {
       }
 
       if (player(state) === "max") {
-        value = -Infinity;
+        let state_value = -Infinity;
 
         actions(state).forEach((action) => {
-          value = Math.max(value, minimax(result(state, action)));
+          state_value = Math.max(state_value, minimax(result(state, action)));
         });
 
-        return value;
+        return state_value;
       } else {
-        value = Infinity;
+        let state_value = Infinity;
 
         actions(state).forEach((action) => {
-          value = Math.min(value, minimax(result(state, action)));
+          state_value = Math.min(state_value, minimax(result(state, action)));
         });
 
-        return value;
+        return state_value;
       }
     }
+
+    console.log(minimax(["", "", "", "", "", "", "", "", ""]));
 
     return {};
   })(); // COMPUTER
