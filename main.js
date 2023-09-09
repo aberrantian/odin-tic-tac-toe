@@ -124,7 +124,7 @@ const MAIN = (() => {
       TURN.toggle();
 
       if (GAME_OVER.get() === false && GAME_MODE.get() === "pvc") {
-        // COMPUTER.play();
+        // let computer_move = COMPUTER.minimax(GRID_ARRAY.get())
       }
     }
   } // play()
@@ -354,15 +354,16 @@ const MAIN = (() => {
       }
     }
 
-    console.log(minimax(["O", "O", "", "X", "X", "", "X", "", ""]));
-
-    return {};
+    console.log(minimax(["X", "", "", "", "", "", "", "", ""]));
+    return { minimax };
   })(); // COMPUTER
 })(); // MAIN
 
 /*
 TODO
 
-add minimax bot with alpha beta pruning
 create theme
+
+BUGS
+minimax returns illegal moves
 */
