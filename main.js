@@ -268,7 +268,37 @@ const MAIN = (() => {
       }
     }
 
-    function value(state, max_marker) {}
+    function value(state) {
+      if (actions(state).length === 0) {
+        return 0;
+      }
+
+      if (
+        (state[0] === "X" && state[4] === "X" && state[8] === "X") ||
+        (state[2] === "X" && state[4] === "X" && state[6] === "X") ||
+        (state[0] === "X" && state[1] === "X" && state[2] === "X") ||
+        (state[3] === "X" && state[4] === "X" && state[5] === "X") ||
+        (state[6] === "X" && state[7] === "X" && state[8] === "X") ||
+        (state[0] === "X" && state[3] === "X" && state[6] === "X") ||
+        (state[1] === "X" && state[4] === "X" && state[7] === "X") ||
+        (state[2] === "X" && state[5] === "X" && state[8] === "X")
+      ) {
+        return -1;
+      }
+
+      if (
+        (state[0] === "O" && state[4] === "O" && state[8] === "O") ||
+        (state[2] === "O" && state[4] === "O" && state[6] === "O") ||
+        (state[0] === "O" && state[1] === "O" && state[2] === "O") ||
+        (state[3] === "O" && state[4] === "O" && state[5] === "O") ||
+        (state[6] === "O" && state[7] === "O" && state[8] === "O") ||
+        (state[0] === "O" && state[3] === "O" && state[6] === "O") ||
+        (state[1] === "O" && state[4] === "O" && state[7] === "O") ||
+        (state[2] === "O" && state[5] === "O" && state[8] === "O")
+      ) {
+        return 1;
+      }
+    }
 
     function terminal(state) {
       if (actions(state).length === 0) {
