@@ -343,7 +343,7 @@ const MAIN = (() => {
         value = -Infinity;
 
         actions(state).forEach((action) => {
-          value = Max(value, minimax(result(state, action)));
+          value = Math.max(value, minimax(result(state, action)));
         });
 
         return value;
@@ -351,7 +351,7 @@ const MAIN = (() => {
         value = Infinity;
 
         actions(state).forEach((action) => {
-          value = Min(value, minimax(result(state, action)));
+          value = Math.min(value, minimax(result(state, action)));
         });
 
         return value;
