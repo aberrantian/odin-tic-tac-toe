@@ -206,7 +206,9 @@ const MAIN = (() => {
     }
 
     GRID_ARRAY.reset();
-    TURN.toggle();
+    if (GAME_MODE.get() === "pvp") {
+      TURN.toggle();
+    }
     draw();
   }
 
