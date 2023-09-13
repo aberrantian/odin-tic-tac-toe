@@ -359,7 +359,7 @@ const MAIN = (() => {
 
       legal_actions.forEach((action) => {
         const CURRENT_MINIMAX = minimax(action);
-        console.log(CURRENT_MINIMAX);
+        console.log(`minimax of ${action}: ${CURRENT_MINIMAX}`);
       });
     }
 
