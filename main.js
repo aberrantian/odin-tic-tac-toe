@@ -355,12 +355,26 @@ const MAIN = (() => {
     }
 
     function play() {
-      let legal_actions = actions(GRID_ARRAY.get());
+      const CURRENT_STATE = GRID_ARRAY.get();
+      let legal_actions = actions(CURRENT_STATE);
+
+      let best_move;
+      let best_move_minimax = -Infinity;
 
       legal_actions.forEach((action) => {
-        const CURRENT_MINIMAX = minimax(action);
-        console.log(`minimax of ${action}: ${CURRENT_MINIMAX}`);
+        const RESULT = result(CURRENT_STATE, action);
+        const CURRENT_MINIMAX = minimax(RESULT);
+        // console.log(`minimax of ${action}: ${CURRENT_MINIMAX}`);
+
+        if (CURRENT_MINIMAX > best_move_minimax) {
+          best_move = action;
+          best_move_minimax = CURRENT_MINIMAX;
+        }
       });
+
+      GRID_ARRAY.set(best_move);
+      evaluate(best_move);
+      TURN.toggle();
     }
 
     return { play };
