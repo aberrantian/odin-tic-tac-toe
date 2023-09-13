@@ -190,7 +190,7 @@ const MAIN = (() => {
 
     document.getElementById("game-over-text").innerText = TEXT;
     document.getElementById("game-over-screen").hidden = false;
-  }
+  } // gameOver()
 
   function draw() {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
@@ -210,7 +210,7 @@ const MAIN = (() => {
       TURN.toggle();
     }
     draw();
-  }
+  } // reset()
 
   const COMPUTER = (() => {
     // MAX = O
