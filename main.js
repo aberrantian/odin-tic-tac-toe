@@ -124,7 +124,7 @@ const MAIN = (() => {
       TURN.toggle();
 
       if (GAME_OVER.get() === false && GAME_MODE.get() === "pvc") {
-        // let computer_move = COMPUTER.minimax(GRID_ARRAY.get())
+        COMPUTER.play();
       }
     }
   } // play()
@@ -354,16 +354,27 @@ const MAIN = (() => {
       }
     }
 
-    console.log(minimax(["X", "", "", "", "", "", "", "", ""]));
-    return { minimax };
+    function play() {
+      let legal_actions = actions(GRID_ARRAY.get());
+
+      legal_actions.forEach((action) => {
+        const CURRENT_MINIMAX = minimax(action);
+        console.log(CURRENT_MINIMAX);
+      });
+    }
+
+    return { play };
   })(); // COMPUTER
 })(); // MAIN
+
+document.getElementById("local-pvc").click();
 
 /*
 TODO
 
+fix minimax
 create theme
 
 BUGS
-minimax returns illegal moves
+minimax evaluates all moves to 0
 */
