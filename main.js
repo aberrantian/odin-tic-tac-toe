@@ -356,26 +356,46 @@ const MAIN = (() => {
       }
     }
 
+    function action_object(index, value) {
+      return { index: index, value: value };
+    }
+
     function play() {
       const CURRENT_STATE = GRID_ARRAY.get();
       let legal_actions = actions(CURRENT_STATE);
 
+      for (let index = 0; index < legal_actions.length; index++) {
+        legal_actions[index] = action_object(
+          legal_actions[index],
+          minimax(result(CURRENT_STATE, legal_actions[index]))
+        );
+      }
+
       let best_move;
-      let best_move_minimax = -Infinity;
 
-      legal_actions.forEach((action) => {
-        const RESULT = result(CURRENT_STATE, action);
-        const CURRENT_MINIMAX = minimax(RESULT);
-        // console.log(`minimax of ${action}: ${CURRENT_MINIMAX}`);
-
-        if (CURRENT_MINIMAX > best_move_minimax) {
-          best_move = action;
-          best_move_minimax = CURRENT_MINIMAX;
+      for (let index = 0; index < legal_actions.length; index++) {
+        if (best_move === undefined) {
+          best_move = legal_actions[index];
         }
-      });
 
-      GRID_ARRAY.set(best_move);
-      evaluate(best_move);
+        if (best_move.value < legal_actions[index].value) {
+          best_move = legal_actions[index];
+        }
+      }
+
+      console.clear();
+      console.log("Legal Actions");
+      for (let index = 0; index < legal_actions.length; index++) {
+        console.log(
+          `index: ${legal_actions[index].index} value: ${legal_actions[index].value}`
+        );
+      }
+      console.log(
+        `Best Move\nindex: ${best_move.index} value: ${best_move.value}`
+      );
+
+      GRID_ARRAY.set(best_move.index);
+      evaluate(best_move.index);
       TURN.toggle();
     }
 
