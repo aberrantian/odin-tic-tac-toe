@@ -384,14 +384,14 @@ const MAIN = (() => {
       }
 
       console.clear();
-      console.log("Legal Actions");
+      console.log("\nLegal Actions");
       for (let index = 0; index < legal_actions.length; index++) {
         console.log(
           `index: ${legal_actions[index].index} value: ${legal_actions[index].value}`
         );
       }
       console.log(
-        `Best Move\nindex: ${best_move.index} value: ${best_move.value}`
+        `\nBest Move\nindex: ${best_move.index} value: ${best_move.value}`
       );
 
       GRID_ARRAY.set(best_move.index);
