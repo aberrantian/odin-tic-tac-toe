@@ -404,6 +404,8 @@ const MAIN = (() => {
       TURN.toggle();
     }
 
+    const TROUBLE_STATE = ["X", "O", "X", "O", "O", "X", "", "X", ""]; // should choose 8, but chooses 6
+
     return { play };
   })(); // COMPUTER
 })(); // MAIN
@@ -413,7 +415,8 @@ document.getElementById("local-pvc").click();
 /*
 TODO
 
-fix minimax
+troubleshoot trouble state
+make ai choose shortest path to victory/tie
 create theme
 
 BUGS
