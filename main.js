@@ -203,12 +203,13 @@ const MAIN = (() => {
   function reset() {
     if (GAME_OVER.get() === true) {
       GAME_OVER.toggle();
+
+      if (GAME_MODE.get() === "pvp") {
+        TURN.toggle();
+      }
     }
 
     GRID_ARRAY.reset();
-    if (GAME_MODE.get() === "pvp") {
-      TURN.toggle();
-    }
     draw();
   } // reset()
 
@@ -412,5 +413,5 @@ fix minimax
 create theme
 
 BUGS
-minimax evaluates all moves to 0
+minimax prioritizes blocking over winning quickly
 */
