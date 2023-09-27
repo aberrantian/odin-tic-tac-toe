@@ -206,6 +206,10 @@ const MAIN = (() => {
 
       if (GAME_MODE.get() === "pvp") {
         TURN.toggle();
+      } else {
+        if (TURN.get() === "O") {
+          TURN.toggle();
+        }
       }
     }
 
@@ -404,7 +408,7 @@ const MAIN = (() => {
   })(); // COMPUTER
 })(); // MAIN
 
-// document.getElementById("local-pvc").click();
+document.getElementById("local-pvc").click();
 
 /*
 TODO
