@@ -174,23 +174,23 @@ const MAIN = (() => {
         ROW_WIN === false &&
         COLUMN_WIN === false
       ) {
-        gameOver("It's a tie!");
+        game_over("It's a tie!");
       }
     })(); // TIE
 
     if (WIN) {
-      gameOver(`The winner is\n${MARKER}`);
+      game_over(`The winner is\n${MARKER}`);
     }
   } // evaluate()
 
-  function gameOver(TEXT) {
+  function game_over(TEXT) {
     if (GAME_OVER.get() === false) {
       GAME_OVER.toggle();
     }
 
     document.getElementById("game-over-text").innerText = TEXT;
     document.getElementById("game-over-screen").hidden = false;
-  } // gameOver()
+  } // game_over()
 
   function draw() {
     for (let index = 0; index < CELL_ELEMENTS.length; index++) {
