@@ -410,7 +410,7 @@ const MAIN = (() => {
   })(); // COMPUTER
 })(); // MAIN
 
-document.getElementById("local-pvc").click();
+// document.getElementById("local-pvc").click();
 
 /*
 TODO
