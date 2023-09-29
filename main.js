@@ -44,8 +44,8 @@ const MAIN = (() => {
         GAME_MODE.toggle();
       }
 
-      document.getElementById("main-menu").hidden = true;
-      document.getElementById("game-board").hidden = false;
+      document.getElementById("main-menu-screen").hidden = true;
+      document.getElementById("game-board-screen").hidden = false;
     });
 
     document.getElementById("local-pvc").addEventListener("click", () => {
@@ -58,14 +58,14 @@ const MAIN = (() => {
         draw();
       }
 
-      document.getElementById("main-menu").hidden = true;
-      document.getElementById("game-board").hidden = false;
+      document.getElementById("main-menu-screen").hidden = true;
+      document.getElementById("game-board-screen").hidden = false;
     });
 
     document.getElementById("main-menu-btn").addEventListener("click", () => {
-      document.getElementById("game-board").hidden = true;
+      document.getElementById("game-board-screen").hidden = true;
       reset();
-      document.getElementById("main-menu").hidden = false;
+      document.getElementById("main-menu-screen").hidden = false;
     });
 
     document.getElementById("restart-btn").addEventListener("click", () => {

@@ -4,6 +4,15 @@
   text-decoration: none;
 }
 
+:root {
+  --base-color: #303446;
+  --text-color: #c6d0f5;
+  --mantle-color: #292c3c;
+  --surface-color-0: #414559;
+  --surface-color-1: #51576d;
+  --surface-color-2: #626880;
+}
+
 body {
   background-color: black;
   color: white;
@@ -15,8 +24,8 @@ body {
 }
 
 .screen {
-  background-color: white;
-  color: black;
+  background-color: var(--base-color);
+  color: var(--text-color);
   height: 100vh;
   width: 100vw;
 
@@ -29,20 +38,32 @@ body {
 
 button {
   text-align: center;
-  padding: 4px 12px;
+  padding: 8px 12px;
+  background-color: var(--surface-color-0);
+  color: var(--text-color);
+  outline: none;
+  border: 2px var(--surface-color-0) solid;
+  border-radius: 8px;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: var(--surface-color-1);
+  border: var(--surface-color-2) 2px solid;
 }
 
-#main-menu {
+#main-menu-screen {
   justify-content: center;
 }
 
-#main-menu > div {
-  background-color: grey;
+#main-menu {
+  border-radius: 8px;
+  background-color: var(--mantle-color);
   padding: 32px;
+
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 32px;
 }
 
 #nav-bar {
@@ -51,7 +72,7 @@ button:hover {
   padding: 8px;
   margin-bottom: 16px;
 
-  background-color: grey;
+  background-color: var(--mantle-color);
 }
 
 #turn-indicator {
@@ -63,7 +84,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(3, min-content);
   grid-template-rows: repeat(3, min-content);
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 32px;
 }
 
@@ -71,24 +92,17 @@ button:hover {
   --cell-size: 150px;
   height: var(--cell-size);
   width: var(--cell-size);
-  background-color: grey;
+  background-color: var(--surface-color-0);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3em;
+  border-radius: 8px;
 }
 
 .cell:hover {
-  background-color: lightgrey;
+  background-color: var(--surface-color-1);
   cursor: pointer;
-}
-
-.win-cell {
-  background-color: green;
-}
-
-.win-cell:hover {
-  background-color: green;
 }
 
 #hud {
@@ -96,8 +110,8 @@ button:hover {
   padding: 0px 16px;
   margin-bottom: 16px;
   text-align: center;
-
-  background-color: grey;
+  border-radius: 8px;
+  background-color: var(--surface-color-0);
 }
 
 #game-over-screen {
@@ -114,6 +128,6 @@ button:hover {
 }
 
 #game-over-menu {
-  background-color: white;
+  background-color: var(--base-color);
   padding: 8px;
 }
