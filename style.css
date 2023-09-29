@@ -129,5 +129,10 @@ button:hover {
 
 #game-over-menu {
   background-color: var(--base-color);
-  padding: 8px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+#restart-btn {
+  margin-top: 16px;
 }
