@@ -421,4 +421,5 @@ create theme
 
 BUGS
 minimax prioritizes blocking over winning quickly
+minimax doesn't always play optimally
 */
